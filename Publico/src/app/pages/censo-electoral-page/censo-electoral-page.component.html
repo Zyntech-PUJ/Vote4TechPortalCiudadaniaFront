@@ -1,0 +1,31 @@
+<section class="censo-page" aria-label="Censo electoral">
+  <header class="censo-hero">
+    <div class="censo-hero__content">
+      <a routerLink="/electoral" class="censo-back-link">Volver a servicios electorales</a>
+      <h1>Censo electoral</h1>
+      <p>Consulta de informacion general y censos historicos (contenido mockeado).</p>
+    </div>
+  </header>
+
+  <main class="censo-main">
+    <div class="censo-grid">
+      @for (banner of banners; track banner.title) {
+        <article class="censo-banner" aria-label="Tarjeta informativa de censo">
+          <div class="censo-banner__overlay"></div>
+          <div class="censo-banner__noise" aria-hidden="true"></div>
+
+          <div class="censo-banner__content">
+            <h2>{{ banner.title }}</h2>
+            @if (banner.subtitle) {
+              <p>{{ banner.subtitle }}</p>
+            }
+          </div>
+
+          <button type="button" class="censo-banner__action">
+            {{ banner.buttonLabel }}
+          </button>
+        </article>
+      }
+    </div>
+  </main>
+</section>

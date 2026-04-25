@@ -1,0 +1,216 @@
+:host {
+  --reg-blue-950: #07274b;
+  --reg-blue-900: #0a3c72;
+  --reg-blue-800: #0c4f92;
+  --reg-blue-700: #1566b4;
+  --reg-cyan-soft: #d8ecfb;
+  --reg-white: #ffffff;
+  --reg-ink: #0b2741;
+
+  display: block;
+  min-height: 100dvh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background:
+    radial-gradient(circle at top left, rgba(121, 184, 232, 0.25), transparent 28%),
+    linear-gradient(180deg, #e6f1fa 0%, #f4f9fd 46%, #ffffff 100%);
+}
+
+.registro-page {
+  min-height: 100dvh;
+}
+
+.registro-hero {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 18% 20%, rgba(61, 142, 211, 0.26), transparent 24%),
+    linear-gradient(180deg, rgba(7, 39, 75, 0.96), rgba(10, 60, 114, 0.98));
+}
+
+.registro-hero__overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0)),
+    radial-gradient(circle at center, rgba(121, 184, 232, 0.12), transparent 36%);
+}
+
+.registro-hero__content {
+  position: relative;
+  z-index: 1;
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 2rem 0 3rem;
+}
+
+.registro-back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  color: rgba(255, 255, 255, 0.95);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 700;
+  margin-bottom: 1.4rem;
+}
+
+.registro-back-link::before {
+  content: '←';
+}
+
+.registro-brand {
+  display: grid;
+  grid-template-columns: 240px minmax(0, 1fr);
+  gap: 1.75rem;
+  align-items: center;
+}
+
+.registro-brand__frame {
+  width: 220px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  padding: 1rem;
+  background:
+    radial-gradient(circle at 30% 30%, rgba(121, 184, 232, 0.28), transparent 38%),
+    linear-gradient(180deg, rgba(12, 79, 146, 0.96), rgba(7, 39, 75, 0.98));
+  box-shadow:
+    inset 0 0 0 1px rgba(255, 255, 255, 0.15),
+    0 16px 34px rgba(3, 20, 40, 0.22);
+}
+
+.registro-brand__frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+}
+
+.registro-brand__copy p,
+.registro-brand__copy h1,
+.registro-brand__copy span {
+  margin: 0;
+  color: var(--reg-white);
+}
+
+.registro-brand__copy p {
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  font-size: 0.8rem;
+  opacity: 0.82;
+}
+
+.registro-brand__copy h1 {
+  margin-top: 0.5rem;
+  font-size: clamp(2rem, 4vw, 3.4rem);
+  line-height: 0.98;
+  text-transform: uppercase;
+}
+
+.registro-brand__copy span {
+  display: block;
+  margin-top: 0.8rem;
+  max-width: 560px;
+  font-size: 1.05rem;
+  line-height: 1.5;
+  color: rgba(255, 255, 255, 0.88);
+}
+
+.registro-main {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 3rem 0 4rem;
+}
+
+.registro-panel {
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid rgba(10, 60, 114, 0.12);
+  border-radius: 1.8rem;
+  box-shadow: 0 24px 40px rgba(7, 48, 84, 0.08);
+  padding: 2.5rem;
+}
+
+.registro-panel__eyebrow {
+  margin: 0;
+  color: var(--reg-blue-700);
+  text-transform: uppercase;
+  font-size: 0.8rem;
+  letter-spacing: 0.18em;
+}
+
+.registro-panel h2 {
+  margin: 0.65rem 0 0;
+  max-width: 620px;
+  color: var(--reg-blue-950);
+  font-size: clamp(1.5rem, 2.5vw, 2.2rem);
+  line-height: 1.2;
+}
+
+.registro-grid {
+  margin-top: 2rem;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.2rem 1.5rem;
+}
+
+.registro-card {
+  min-height: 92px;
+  border: 1px solid rgba(10, 60, 114, 0.2);
+  border-radius: 1rem;
+  background:
+    linear-gradient(180deg, rgba(216, 236, 251, 0.7), rgba(255, 255, 255, 0.98) 46%),
+    var(--reg-white);
+  color: var(--reg-blue-950);
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.2;
+  padding: 1rem;
+  cursor: pointer;
+  box-shadow: inset 0 0 0 1px rgba(121, 184, 232, 0.18);
+  transition: transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
+}
+
+.registro-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(12, 79, 146, 0.34);
+  box-shadow:
+    inset 0 0 0 1px rgba(121, 184, 232, 0.22),
+    0 14px 28px rgba(7, 48, 84, 0.08);
+}
+
+@media (max-width: 900px) {
+  .registro-hero__content,
+  .registro-main {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .registro-brand {
+    grid-template-columns: 1fr;
+  }
+
+  .registro-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .registro-hero__content {
+    padding-top: 1.5rem;
+    padding-bottom: 2.2rem;
+  }
+
+  .registro-brand__frame {
+    width: 180px;
+  }
+
+  .registro-panel {
+    padding: 1.4rem;
+    border-radius: 1.2rem;
+  }
+
+  .registro-grid {
+    grid-template-columns: 1fr;
+  }
+}

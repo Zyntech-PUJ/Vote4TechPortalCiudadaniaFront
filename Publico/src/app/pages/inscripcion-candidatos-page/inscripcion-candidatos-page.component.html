@@ -1,0 +1,39 @@
+<section class="cand-page" aria-label="Informacion de inscripcion de candidatos">
+  <header class="cand-hero">
+    <div class="cand-hero__content">
+      <a routerLink="/electoral" class="cand-back-link">Volver a servicios electorales</a>
+      <h1>Inscripcion de candidatos</h1>
+      <p>
+        Para este tramite debe acercarse presencialmente a la Registraduria con los documentos requeridos.
+      </p>
+    </div>
+  </header>
+
+  <main class="cand-main">
+    <section class="cand-panel">
+      <h2>Documentos requeridos</h2>
+      <ul>
+        @for (item of documentos; track item) {
+          <li>{{ item }}</li>
+        }
+      </ul>
+    </section>
+
+    <section class="cand-panel">
+      <h2>Pasos recomendados</h2>
+      <ol>
+        @for (step of pasos; track step) {
+          <li>{{ step }}</li>
+        }
+      </ol>
+    </section>
+
+    <section class="cand-alert" aria-label="Aviso importante">
+      <h3>Importante</h3>
+      <p>
+        La documentacion puede variar segun el tipo de eleccion y la normatividad vigente.
+        Verifique previamente fechas oficiales, calendario electoral y requisitos actualizados.
+      </p>
+    </section>
+  </main>
+</section>

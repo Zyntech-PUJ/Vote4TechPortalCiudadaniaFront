@@ -1,0 +1,26 @@
+<section class="cap-page" aria-label="Capacitacion electoral mock">
+  <header class="cap-hero">
+    <div class="cap-hero__content">
+      <a routerLink="/electoral" class="cap-back-link">Volver a servicios electorales</a>
+      <h1>Capacitacion electoral</h1>
+      <p>Contenido mockeado de rutas de capacitacion electoral.</p>
+    </div>
+  </header>
+
+  <main class="cap-main">
+    <div class="cap-grid">
+      @for (item of items; track item.title) {
+        <article class="cap-card" aria-label="Tarjeta informativa de capacitacion">
+          <div class="cap-card__logo" aria-hidden="true">
+            <span class="cap-ribbon cap-ribbon--yellow"></span>
+            <span class="cap-ribbon cap-ribbon--blue"></span>
+            <span class="cap-ribbon cap-ribbon--red"></span>
+            <span class="cap-badge">{{ item.badge }}</span>
+          </div>
+
+          <h2>{{ item.title }}</h2>
+        </article>
+      }
+    </div>
+  </main>
+</section>

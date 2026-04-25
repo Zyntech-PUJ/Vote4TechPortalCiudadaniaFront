@@ -1,0 +1,53 @@
+<div class="cj-page">
+  <header class="cj-topbar">
+    <a routerLink="/" class="cj-logo-link" aria-label="Volver al inicio">
+      <img src="assets/logoRegistraduria.jpg" alt="Registraduria Nacional del Estado Civil" class="cj-logo" />
+    </a>
+  </header>
+
+  <main class="cj-main">
+    <section class="cj-card">
+      <h1 class="cj-evento">{{ config.tituloEvento }}</h1>
+      <h2 class="cj-subtitulo">{{ config.subtitulo }}</h2>
+
+      <div class="cj-content">
+        <section class="cj-form-area">
+          <form class="cj-form" (ngSubmit)="consultar()" #f="ngForm" novalidate>
+            <label for="cedula" class="cj-label">Cedula de ciudadania:</label>
+            <input
+              id="cedula"
+              name="cedula"
+              type="text"
+              class="cj-input"
+              placeholder="Digite el numero"
+              [(ngModel)]="cedula"
+              inputmode="numeric"
+              (input)="sanitizeCedula()"
+              (keydown)="allowOnlyDigits($event)"
+              required
+              pattern="[0-9]+"
+            />
+
+            @if (f.submitted && f.controls['cedula']?.invalid) {
+              <p class="cj-error">Campo requerido</p>
+            }
+
+            <p class="cj-recordatorio">{{ config.recordatorio }}</p>
+            <p class="cj-nota">{{ config.nota }}</p>
+
+            <button type="submit" class="cj-btn">Consultar</button>
+          </form>
+        </section>
+
+        <aside class="cj-info-area">
+          @if (resultado === null) {
+            <p class="cj-ayuda">{{ config.ayuda }}</p>
+          } @else {
+            <h3 class="cj-info-title">Resultado de consulta</h3>
+            <p class="cj-ayuda">{{ resultado.mensaje }}</p>
+          }
+        </aside>
+      </div>
+    </section>
+  </main>
+</div>

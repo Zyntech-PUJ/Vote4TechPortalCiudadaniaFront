@@ -1,0 +1,87 @@
+<div class="lv-page">
+
+  <!-- ─── TOP BAR ─── -->
+  <header class="lv-topbar">
+    <a routerLink="/" class="lv-logo-link">
+      <img src="assets/logoRegistraduria.jpg" alt="Registraduria Nacional del Estado Civil" class="lv-logo" />
+    </a>
+
+    <nav class="lv-breadcrumb" aria-label="Ruta de navegacion">
+      <a routerLink="/">Inicio</a>
+      <span>/</span>
+      <a routerLink="/electoral">Electoral</a>
+      <span>/</span>
+      <span>Consulta Lugar de Votacion</span>
+    </nav>
+  </header>
+
+  <!-- ─── CONTENT ─── -->
+  <main class="lv-main">
+
+    <!-- Left: form -->
+    <section class="lv-form-section">
+      <h1 class="lv-title">CONSULTA LUGAR DE VOTACIÓN</h1>
+
+      <form class="lv-form" (ngSubmit)="consultar()" #f="ngForm" novalidate>
+
+        <div class="lv-field">
+          <label for="cedula" class="lv-label">No. Identificación:</label>
+          <input
+            id="cedula"
+            type="text"
+            class="lv-input"
+            placeholder="dígite el número sin puntos ni comas"
+            [(ngModel)]="cedula"
+            name="cedula"
+            appNumericOnly
+            inputmode="numeric"
+            required
+            pattern="[0-9]+"
+          />
+          @if (f.submitted && f.controls['cedula']?.invalid) {
+            <p class="lv-error">⚠ Campo requerido</p>
+          }
+        </div>
+
+        <div class="lv-field">
+          <label for="eleccion" class="lv-label">Seleccione la elección:</label>
+          <select
+            id="eleccion"
+            class="lv-select"
+            [(ngModel)]="eleccion"
+            name="eleccion"
+            required
+          >
+            <option value="" disabled hidden>lugar de votación actual...</option>
+            @for (e of elecciones; track e) {
+              <option [value]="e">{{ e }}</option>
+            }
+          </select>
+          @if (f.submitted && f.controls['eleccion']?.invalid) {
+            <p class="lv-error">⚠ Campo requerido</p>
+          }
+        </div>
+
+        <button type="submit" class="lv-btn-consultar">CONSULTAR</button>
+
+      </form>
+    </section>
+
+    <!-- Right: info / result panel -->
+    <aside class="lv-info-panel">
+      @if (resultado === null) {
+        <h2 class="lv-info-title">INFORMACIÓN DEL LUGAR DE VOTACIÓN</h2>
+        <p class="lv-info-text">
+          Por favor digite su número de cédula, seleccione el tipo de elección y dé clic en consultar.
+        </p>
+      } @else {
+        <h2 class="lv-info-title">RESULTADO</h2>
+        <p class="lv-info-text lv-info-text--warn">
+          No se encontró información para el número de identificación ingresado. Verifique los datos e intente de nuevo.
+        </p>
+      }
+    </aside>
+
+  </main>
+
+</div>

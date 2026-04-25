@@ -1,0 +1,38 @@
+<section class="registro-page" aria-label="Pagina de registro civil e identificacion">
+  <header class="registro-hero">
+    <div class="registro-hero__overlay"></div>
+
+    <div class="registro-hero__content">
+      <a routerLink="/" class="registro-back-link">Volver al portal</a>
+
+      <div class="registro-brand">
+        <div class="registro-brand__frame">
+          <img
+            src="assets/logoRegistraduria.jpg"
+            alt="Logo de la Registraduria Nacional del Estado Civil"
+          />
+        </div>
+
+        <div class="registro-brand__copy">
+          <p>Servicios ciudadanos</p>
+          <h1>Registro civil e identificacion ciudadana</h1>
+          <span>Accesos directos a tramites y consultas prioritarias.</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="registro-main">
+    <section class="registro-panel">
+      <p class="registro-panel__eyebrow">Portal de tramites</p>
+      <h2>Servicios relacionados al registro civil e identificacion ciudadana</h2>
+
+      <div class="registro-grid">
+        @for (item of serviceGroups; track item.label) {
+          <button type="button" class="registro-card">{{ item.label }}</button>
+        }
+      </div>
+    </section>
+  </main>
+
+</section>

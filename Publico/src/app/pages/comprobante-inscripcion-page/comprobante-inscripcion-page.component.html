@@ -1,0 +1,66 @@
+<section class="ci-page" aria-label="Consulta comprobante del tramite de inscripcion">
+  <div class="ci-layout">
+    <section class="ci-left">
+      <a routerLink="/electoral" class="ci-back-link">Volver a servicios electorales</a>
+
+      <div class="ci-brand">
+        <img src="assets/logoRegistraduria.jpg" alt="Logo Registraduria Nacional del Estado Civil" />
+        <h1>Consulta comprobante del tramite de inscripcion - Formulario E4</h1>
+      </div>
+    </section>
+
+    <section class="ci-right">
+      <article class="ci-card">
+        <div class="ci-info-box">{{ config.info }}</div>
+
+        <form class="ci-form" (ngSubmit)="ingresar()" #f="ngForm" novalidate>
+          <label for="tipo">Tipo de documento</label>
+          <select id="tipo" name="tipo" [(ngModel)]="tipoDocumento">
+            @for (item of config.tiposDocumento; track item) {
+              <option [value]="item">{{ item }}</option>
+            }
+          </select>
+
+          <label for="cedula">Digite su numero de cedula</label>
+          <input
+            id="cedula"
+            name="cedula"
+            type="text"
+            appNumericOnly
+            inputmode="numeric"
+            [(ngModel)]="cedula"
+            required
+          />
+
+          <label for="expedicion">Ingrese fecha de expedicion</label>
+          <input
+            id="expedicion"
+            name="expedicion"
+            type="text"
+            placeholder="aaaa/mm/dd"
+            [(ngModel)]="fechaExpedicion"
+            required
+          />
+
+          <label for="nacimiento">Ingrese fecha de nacimiento</label>
+          <input
+            id="nacimiento"
+            name="nacimiento"
+            type="text"
+            placeholder="aaaa/mm/dd"
+            [(ngModel)]="fechaNacimiento"
+            required
+          />
+
+          <button type="submit">Ingresar</button>
+
+          @if (f.submitted && f.invalid) {
+            <p class="ci-msg ci-msg--error">Complete todos los campos.</p>
+          } @else if (resultado) {
+            <p class="ci-msg">{{ resultado }}</p>
+          }
+        </form>
+      </article>
+    </section>
+  </div>
+</section>

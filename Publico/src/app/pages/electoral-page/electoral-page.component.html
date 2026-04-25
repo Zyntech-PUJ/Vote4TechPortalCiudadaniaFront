@@ -1,0 +1,42 @@
+<section class="electoral-page" aria-label="Pagina de servicios electorales">
+  <header class="electoral-hero">
+    <div class="electoral-hero__overlay"></div>
+
+    <div class="electoral-hero__content">
+      <a routerLink="/" class="electoral-back-link">Volver al portal</a>
+
+      <div class="electoral-brand">
+        <div class="electoral-brand__frame">
+          <img
+            src="assets/logoRegistraduria.jpg"
+            alt="Logo de la Registraduria Nacional del Estado Civil"
+          />
+        </div>
+
+        <div class="electoral-brand__copy">
+          <p>Tramites y servicios</p>
+          <h1>Electoral</h1>
+          <span>Consultas, inscripciones y certificados relacionados con el proceso electoral colombiano.</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="electoral-main">
+    <section class="electoral-panel">
+      <p class="electoral-panel__eyebrow">Portal de tramites</p>
+      <h2>Servicios electorales disponibles</h2>
+
+      <div class="electoral-grid">
+        @for (svc of services; track svc.label) {
+          @if (svc.route) {
+            <a [routerLink]="svc.route" class="electoral-card electoral-card--link">{{ svc.label }}</a>
+          } @else {
+            <button type="button" class="electoral-card">{{ svc.label }}</button>
+          }
+        }
+      </div>
+    </section>
+  </main>
+
+</section>

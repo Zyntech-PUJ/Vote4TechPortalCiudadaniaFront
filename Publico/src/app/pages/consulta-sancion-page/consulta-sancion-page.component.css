@@ -1,0 +1,172 @@
+:host {
+  --reg-blue-950: #07274b;
+  --reg-blue-900: #0a3c72;
+  --reg-blue-700: #1566b4;
+  --reg-ink: #0b2741;
+  --reg-muted: #7d8ca0;
+  --reg-danger: #dd2e2e;
+  --reg-white: #ffffff;
+
+  display: block;
+  min-height: 100dvh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #dff0f2;
+}
+
+.cj-topbar {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.2rem 1.5rem 0;
+}
+
+.cj-logo {
+  height: 80px;
+  width: auto;
+  object-fit: contain;
+}
+
+.cj-main {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem 1.5rem 2.5rem;
+}
+
+.cj-card {
+  background: #f8fbfd;
+  border-radius: 1.8rem;
+  padding: 2.2rem 1.4rem 2rem;
+}
+
+.cj-evento {
+  margin: 0;
+  text-align: center;
+  color: var(--reg-blue-900);
+  font-weight: 500;
+  font-size: clamp(1.2rem, 2vw, 1.9rem);
+}
+
+.cj-subtitulo {
+  margin: 1rem 0 2.3rem;
+  text-align: center;
+  color: var(--reg-blue-900);
+  font-weight: 400;
+  font-size: clamp(1rem, 1.7vw, 1.45rem);
+}
+
+.cj-content {
+  display: grid;
+  grid-template-columns: minmax(0, 430px) minmax(0, 1fr);
+  gap: 2rem;
+  align-items: start;
+}
+
+.cj-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.cj-label {
+  color: var(--reg-blue-950);
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+.cj-input {
+  width: 100%;
+  padding: 0.9rem 1.2rem;
+  border: 3px solid #1f1f1f;
+  border-radius: 999px;
+  font-size: 1.05rem;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.cj-input::placeholder {
+  color: #9399a2;
+}
+
+.cj-error {
+  margin: 0;
+  color: var(--reg-danger);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.cj-recordatorio {
+  margin: 0.8rem 0 0;
+  color: #2d4f73;
+  font-size: 1.1rem;
+  line-height: 1.45;
+}
+
+.cj-recordatorio::first-letter {
+  font-weight: 700;
+}
+
+.cj-nota {
+  margin: 0.8rem 0 0;
+  color: #ff2a2a;
+  font-size: 1.1rem;
+  line-height: 1.45;
+}
+
+.cj-btn {
+  margin-top: 1rem;
+  width: 100%;
+  max-width: 340px;
+  align-self: center;
+  padding: 0.85rem 1.3rem;
+  border: 0;
+  border-radius: 999px;
+  background: var(--reg-blue-950);
+  color: var(--reg-white);
+  font-size: 1.3rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.cj-btn:hover {
+  background: var(--reg-blue-900);
+}
+
+.cj-info-area {
+  padding-top: 2.6rem;
+}
+
+.cj-ayuda,
+.cj-info-title {
+  margin: 0;
+  color: var(--reg-blue-950);
+}
+
+.cj-info-title {
+  margin-bottom: 0.8rem;
+  font-size: 1.35rem;
+  font-weight: 700;
+}
+
+.cj-ayuda {
+  font-size: 1.1rem;
+  line-height: 1.4;
+}
+
+@media (max-width: 900px) {
+  .cj-content {
+    grid-template-columns: 1fr;
+  }
+
+  .cj-info-area {
+    padding-top: 0.4rem;
+  }
+
+  .cj-label,
+  .cj-input,
+  .cj-ayuda,
+  .cj-recordatorio,
+  .cj-nota,
+  .cj-btn,
+  .cj-info-title {
+    font-size: 1rem;
+  }
+}

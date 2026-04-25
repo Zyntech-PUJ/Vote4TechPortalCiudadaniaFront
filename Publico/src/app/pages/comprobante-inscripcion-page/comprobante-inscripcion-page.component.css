@@ -1,0 +1,154 @@
+:host {
+  display: block;
+  min-height: 100dvh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #072f57;
+}
+
+.ci-page {
+  min-height: 100dvh;
+}
+
+.ci-layout {
+  min-height: 100dvh;
+  display: grid;
+  grid-template-columns: minmax(0, 1.08fr) minmax(420px, 660px);
+}
+
+.ci-left {
+  color: #fff;
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  padding: 2rem;
+}
+
+.ci-back-link {
+  justify-self: start;
+  align-self: start;
+  color: rgba(255, 255, 255, 0.95);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.ci-back-link::before {
+  content: '←';
+  margin-right: 0.45rem;
+}
+
+.ci-brand {
+  width: min(620px, 100%);
+  text-align: left;
+}
+
+.ci-brand img {
+  width: 240px;
+  height: auto;
+  border-radius: 0.8rem;
+  margin-bottom: 1.1rem;
+  filter: brightness(1.14) contrast(1.02);
+}
+
+.ci-brand h1 {
+  margin: 0;
+  font-size: clamp(2rem, 4vw, 3.35rem);
+  line-height: 1.08;
+  font-weight: 800;
+}
+
+.ci-right {
+  display: grid;
+  align-content: center;
+  justify-items: center;
+  padding: 1.2rem;
+}
+
+.ci-card {
+  width: min(560px, 100%);
+  border-radius: 2rem;
+  background: #f2f2f2;
+  padding: 1.25rem;
+}
+
+.ci-info-box {
+  background: #b5c6e6;
+  color: #08294a;
+  border-radius: 1.3rem;
+  padding: 1.45rem 1.5rem;
+  font-size: 1rem;
+  line-height: 1.45;
+  font-weight: 700;
+}
+
+.ci-form {
+  margin-top: 1.1rem;
+  display: grid;
+  gap: 0.62rem;
+}
+
+.ci-form label {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #0a2f50;
+}
+
+.ci-form select,
+.ci-form input {
+  height: 44px;
+  width: 100%;
+  box-sizing: border-box;
+  border-radius: 999px;
+  border: 1px solid #c8ced8;
+  background: #ebedf0;
+  padding: 0 1rem;
+  color: #12395d;
+  font-size: 1rem;
+}
+
+.ci-form button {
+  margin-top: 0.7rem;
+  height: 44px;
+  border: none;
+  border-radius: 999px;
+  background: #032e56;
+  color: #fff;
+  font-size: 1.03rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.ci-msg {
+  margin: 0.35rem 0 0;
+  font-size: 0.86rem;
+  color: #104373;
+  font-weight: 600;
+}
+
+.ci-msg--error {
+  color: #b3261e;
+}
+
+@media (max-width: 980px) {
+  .ci-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .ci-left {
+    align-content: start;
+    justify-items: start;
+    padding: 1.4rem 1rem 0.5rem;
+  }
+
+  .ci-brand img {
+    width: 190px;
+  }
+
+  .ci-brand h1 {
+    font-size: clamp(1.5rem, 7vw, 2.3rem);
+  }
+
+  .ci-right {
+    padding: 0.6rem 1rem 1.5rem;
+  }
+}

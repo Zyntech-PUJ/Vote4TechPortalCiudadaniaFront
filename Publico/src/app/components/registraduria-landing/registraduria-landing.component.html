@@ -1,0 +1,72 @@
+<section class="landing-page" aria-label="Seccion principal Registraduria Nacional del Estado Civil">
+  <div class="hero-section">
+    <div class="hero-backdrop" aria-hidden="true">
+      <div class="building building--left"></div>
+      <div class="building building--center"></div>
+      <div class="building building--right"></div>
+    </div>
+
+    <div class="hero-content">
+      <div class="brand-panel">
+        <div class="brand-logo-frame">
+          <img
+            class="brand-logo-image"
+            src="assets/logoRegistraduria.jpg"
+            alt="Logo de la Registraduria Nacional del Estado Civil"
+          />
+        </div>
+      </div>
+
+      <div class="hero-side">
+        <aside class="election-card" aria-label="Tarjeta informativa elecciones 2026">
+          <p>Conoce tu lugar de votacion</p>
+          <div class="election-card__year">2026</div>
+          <span>Elecciones</span>
+        </aside>
+      </div>
+    </div>
+  </div>
+
+  <nav class="main-nav" aria-label="Navegacion principal">
+    @for (item of navItems; track item) {
+      <a href="#" class="nav-item">{{ item }}</a>
+    }
+  </nav>
+
+  <section class="services-section" aria-label="Servicios a la ciudadania">
+    <div class="campaign-banner">
+      <div class="campaign-banner__icon" aria-hidden="true">
+        <span></span>
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+      <div>
+        <p>Elecciones</p>
+        <strong>Presidenciales 2026</strong>
+      </div>
+    </div>
+
+    <div class="services-copy">
+      <p class="services-copy__eyebrow">Servicios a la ciudadania</p>
+      <h2>Encuentra todos nuestros tramites</h2>
+
+      <div class="service-grid">
+        @for (card of serviceCards; track card.title) {
+          <button
+            type="button"
+            class="service-card"
+            [class.service-card--highlighted]="card.highlighted"
+            [routerLink]="card.route"
+            [disabled]="!card.route"
+          >
+            <span class="service-card__icon" [class.service-card__icon--ballot]="card.icon === 'ballot'" aria-hidden="true"></span>
+            <span class="service-card__title">{{ card.title }}</span>
+          </button>
+        }
+      </div>
+    </div>
+  </section>
+
+</section>
+

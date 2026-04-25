@@ -1,0 +1,60 @@
+<section class="rh-page" aria-label="Consulta de resultados historicos">
+  <header class="rh-hero">
+    <div class="rh-hero__overlay"></div>
+
+    <div class="rh-hero__content">
+      <a [routerLink]="['/electoral']" class="rh-back-link">Volver a servicios electorales</a>
+
+      <div class="rh-brand">
+        <div class="rh-brand__frame">
+          <img src="assets/logoRegistraduria.jpg" alt="Logo de la Registraduria Nacional del Estado Civil" />
+        </div>
+
+        <div class="rh-brand__copy">
+          <p>Consulta ciudadana</p>
+          <h1>Resultados historicos</h1>
+          <span>Seleccione año y departamento para consultar los censos historicos electorales.</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main class="rh-main">
+    <section class="rh-panel">
+      <p class="rh-panel__eyebrow">Censos electorales</p>
+      <h2>Consulta de resultados historicos</h2>
+
+      <form class="rh-form" (ngSubmit)="consultar()" #f="ngForm" novalidate>
+        <div class="rh-filters">
+          <label class="rh-select-wrap" for="anio">
+            <span class="rh-label">Año</span>
+            <select id="anio" name="anio" [(ngModel)]="anio" required>
+              <option [ngValue]="''" disabled>Año</option>
+              @for (item of config.anios; track item) {
+                <option [ngValue]="item">{{ item }}</option>
+              }
+            </select>
+          </label>
+
+          <label class="rh-select-wrap" for="departamento">
+            <span class="rh-label">Departamento</span>
+            <select id="departamento" name="departamento" [(ngModel)]="departamento" required>
+              <option [ngValue]="''" disabled>Departamento</option>
+              @for (item of config.departamentos; track item) {
+                <option [ngValue]="item">{{ item }}</option>
+              }
+            </select>
+          </label>
+        </div>
+
+        <button type="submit" class="rh-submit">Consultar censos historicos</button>
+
+        @if (f.submitted && f.invalid) {
+          <p class="rh-message rh-message--error">Seleccione año y departamento.</p>
+        } @else if (mensaje) {
+          <p class="rh-message">{{ mensaje }}</p>
+        }
+      </form>
+    </section>
+  </main>
+</section>

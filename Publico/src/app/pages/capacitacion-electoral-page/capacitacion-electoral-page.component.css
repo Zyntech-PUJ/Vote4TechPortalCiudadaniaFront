@@ -1,0 +1,146 @@
+:host {
+  --reg-blue-950: #07274b;
+  --reg-blue-900: #0a3c72;
+  --reg-white: #ffffff;
+
+  display: block;
+  min-height: 100dvh;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: linear-gradient(180deg, #eef3f8 0%, #f8fbfe 50%, #ffffff 100%);
+}
+
+.cap-hero {
+  background: linear-gradient(180deg, rgba(7, 39, 75, 0.95), rgba(10, 60, 114, 0.98));
+  color: var(--reg-white);
+}
+
+.cap-hero__content {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 1.8rem 1rem 2rem;
+}
+
+.cap-back-link {
+  color: rgba(255, 255, 255, 0.92);
+  text-decoration: none;
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+.cap-back-link::before {
+  content: '←';
+  margin-right: 0.45rem;
+}
+
+.cap-hero h1 {
+  margin: 0.7rem 0 0.3rem;
+  font-size: clamp(1.35rem, 2.5vw, 2rem);
+  text-transform: uppercase;
+}
+
+.cap-hero p {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.84);
+}
+
+.cap-main {
+  max-width: 1500px;
+  margin: 0 auto;
+  padding: 1.5rem 1rem 2.4rem;
+}
+
+.cap-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1.2rem;
+}
+
+.cap-card {
+  min-height: 170px;
+  background: #f4f8fc;
+  border: 1px solid rgba(7, 39, 75, 0.12);
+  border-radius: 1.45rem;
+  box-shadow: 0 6px 20px rgba(11, 39, 65, 0.08);
+  display: grid;
+  grid-template-columns: 140px minmax(0, 1fr);
+  align-items: center;
+  gap: 1rem;
+  padding: 1.25rem 1.4rem;
+}
+
+.cap-card__logo {
+  position: relative;
+  width: 110px;
+  height: 95px;
+}
+
+.cap-ribbon {
+  position: absolute;
+  left: 0;
+  height: 22px;
+  border-radius: 999px;
+  transform-origin: left center;
+  box-shadow: 0 4px 8px rgba(5, 29, 55, 0.22);
+}
+
+.cap-ribbon--yellow {
+  top: 4px;
+  width: 98px;
+  background: linear-gradient(90deg, #ffe300, #ffd100 70%, rgba(255, 209, 0, 0));
+  transform: skewX(-16deg);
+}
+
+.cap-ribbon--blue {
+  top: 30px;
+  width: 84px;
+  background: linear-gradient(90deg, #0d66b2, #0b4f8a 70%, rgba(11, 79, 138, 0));
+  transform: skewX(-16deg);
+}
+
+.cap-ribbon--red {
+  top: 56px;
+  width: 68px;
+  background: linear-gradient(90deg, #ef1c26, #c71921 70%, rgba(199, 25, 33, 0));
+  transform: skewX(-16deg);
+}
+
+.cap-badge {
+  position: absolute;
+  left: 8px;
+  bottom: 0;
+  background: #083f72;
+  color: #fff;
+  font-size: 0.88rem;
+  font-weight: 700;
+  padding: 0.2rem 0.55rem;
+  border-radius: 999px;
+}
+
+.cap-card h2 {
+  margin: 0;
+  color: #083f72;
+  font-size: clamp(1.15rem, 1.75vw, 2.05rem);
+  line-height: 1.08;
+  font-weight: 800;
+}
+
+@media (max-width: 1200px) {
+  .cap-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .cap-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cap-card {
+    grid-template-columns: 120px minmax(0, 1fr);
+    min-height: 145px;
+  }
+
+  .cap-card h2 {
+    font-size: 1.4rem;
+  }
+}

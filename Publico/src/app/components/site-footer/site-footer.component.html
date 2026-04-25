@@ -1,0 +1,63 @@
+<footer class="site-footer" aria-label="Footer institucional">
+  <div class="site-footer__backdrop" aria-hidden="true">
+    <div class="footer-building footer-building--left"></div>
+    <div class="footer-building footer-building--right"></div>
+  </div>
+
+  <div class="site-footer__content">
+    <div class="site-footer__brand">
+      <div class="footer-logo-frame">
+        <img
+          class="footer-logo-image"
+          src="assets/logoRegistraduria.jpg"
+          alt="Logo de la Registraduria Nacional del Estado Civil"
+        />
+      </div>
+    </div>
+
+    <div class="site-footer__contact">
+      <section class="footer-info-block">
+        <h3>Sede principal</h3>
+
+        @for (item of footerPrimaryInfo; track item.text) {
+          <div class="footer-info-line">
+            <span class="footer-info-line__icon" [attr.data-icon]="item.icon" aria-hidden="true"></span>
+            <p>{{ item.text }}</p>
+          </div>
+        }
+      </section>
+
+      <section class="footer-info-block">
+        <h3>Centro de Atencion e Informacion Ciudadana (CAIC)</h3>
+
+        @for (item of footerCaicInfo; track item.text) {
+          <div class="footer-info-line">
+            <span class="footer-info-line__icon" [attr.data-icon]="item.icon" aria-hidden="true"></span>
+            <p>{{ item.text }}</p>
+          </div>
+        }
+      </section>
+    </div>
+
+    <div class="site-footer__links">
+      @for (column of footerLinksColumns; track $index) {
+        <nav class="footer-links-column" [attr.aria-label]="'Enlaces institucionales ' + ($index + 1)">
+          @for (link of column; track link) {
+            <a href="#">{{ link }}</a>
+          }
+        </nav>
+      }
+    </div>
+  </div>
+
+  <div class="site-footer__social">
+    @for (icon of footerSocialItems; track icon) {
+      <a href="#" class="footer-social-link">{{ icon }}</a>
+    }
+  </div>
+
+  <div class="site-footer__bar">
+    <p>Ultima actualizacion 24 abril de 2026</p>
+    <p>Copyright 2024 C - Registraduria Nacional del Estado Civil.</p>
+  </div>
+</footer>

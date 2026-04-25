@@ -1,0 +1,86 @@
+<section class="mp-page" aria-label="Mecanismos de participacion ciudadana">
+  <header class="mp-head">
+    <a routerLink="/electoral" class="mp-back">Volver a servicios electorales</a>
+    <h1>Mecanismos de participacion ciudadana</h1>
+    <p>
+      La Constitucion Politica de Colombia de 1991 condujo a una migracion democratica que paso de representativa a participativa,
+      fortaleciendo pilares de la democracia constitucional.
+    </p>
+    <p>
+      En este sentido, la Registraduria Nacional del Estado Civil tiene como objetivo la transparencia en los procedimientos,
+      fomentando la confianza en los procesos misionales.
+    </p>
+  </header>
+
+  <main class="mp-main">
+    <div class="mp-toolbar" aria-label="Barra de filtros mockeada">
+      <label>Mostrar
+        <select>
+          <option selected>10</option>
+          <option>25</option>
+          <option>50</option>
+        </select>
+        publicaciones
+      </label>
+
+      <label>Buscar:
+        <input type="text" placeholder="Buscar publicaciones" />
+      </label>
+    </div>
+
+    <section class="mp-table-wrap" aria-label="Listado de publicaciones">
+      <table class="mp-table">
+        <thead>
+          <tr>
+            <th>Tipo de archivo</th>
+            <th>Descripcion</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          @for (item of publicaciones; track item.descripcion) {
+            <tr>
+              <td>
+                <span class="mp-file-badge">{{ item.tipoArchivo }}</span>
+              </td>
+              <td>
+                <strong>{{ item.descripcion }}</strong>
+                <p>{{ item.fecha }}</p>
+                @if (item.nota) {
+                  <small>{{ item.nota }}</small>
+                }
+              </td>
+              <td>
+                <div class="mp-actions">
+                  <button type="button">Ver</button>
+                  <button type="button">Descargar</button>
+                  <button type="button">Compartir</button>
+                </div>
+              </td>
+            </tr>
+          }
+        </tbody>
+      </table>
+    </section>
+
+    <div class="mp-pagination" aria-label="Paginacion mockeada">
+      <span>Mostrando pagina 1 de 1</span>
+      <div>
+        <button type="button">Primera</button>
+        <button type="button">Anterior</button>
+        <button type="button" class="active">1</button>
+        <button type="button">Siguiente</button>
+        <button type="button">Ultima</button>
+      </div>
+    </div>
+
+    <section class="mp-normas" aria-label="Normas relacionadas">
+      <h2>Normas relacionadas</h2>
+      <ul>
+        @for (n of normas; track n) {
+          <li>{{ n }}</li>
+        }
+      </ul>
+    </section>
+  </main>
+</section>
