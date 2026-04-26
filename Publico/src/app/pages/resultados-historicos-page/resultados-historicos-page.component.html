@@ -30,7 +30,7 @@
             <span class="rh-label">Año</span>
             <select id="anio" name="anio" [(ngModel)]="anio" required>
               <option [ngValue]="''" disabled>Año</option>
-              @for (item of config.anios; track item) {
+              @for (item of anios(); track item) {
                 <option [ngValue]="item">{{ item }}</option>
               }
             </select>

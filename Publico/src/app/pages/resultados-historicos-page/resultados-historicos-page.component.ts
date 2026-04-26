@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { RouterLinkWithHref } from '@angular/router';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { ResultadosHistoricosService } from '../../services/resultados-historicos.service';
 
 @Component({
@@ -18,6 +19,7 @@ export class ResultadosHistoricosPageComponent {
   mensaje = '';
 
   readonly config = this.resultadosSvc.getConfig();
+  readonly anios = toSignal(this.resultadosSvc.getAnios(), { initialValue: [] as string[] });
 
   consultar(): void {
     if (!this.anio || !this.departamento) {
@@ -25,7 +27,6 @@ export class ResultadosHistoricosPageComponent {
       return;
     }
 
-    // TODO: reemplazar con llamada real al backend
     this.mensaje = `Censo historico ${this.anio} para ${this.departamento} consultado correctamente.`;
   }
 }

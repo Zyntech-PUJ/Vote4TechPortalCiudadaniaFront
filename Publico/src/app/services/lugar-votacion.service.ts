@@ -1,5 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 
 export interface ConsultaLugarVotacionResult {
   found: boolean;
@@ -9,27 +11,26 @@ export interface ConsultaLugarVotacionResult {
   mesa?: string;
 }
 
+interface ResponseEleccionDTO {
+  idEleccion: number;
+  nombre: string;
+  estado: string;
+}
+
 @Injectable({ providedIn: 'root' })
 export class LugarVotacionService {
-  getElecciones(): string[] {
-    return [
-      'Lugar de votación actual',
-      'Elecciones Congreso 2026',
-      'Elecciones Presidenciales 2026',
-      'Consulta Popular 2025',
-    ];
+  private readonly http = inject(HttpClient);
+
+  getElecciones(): Observable<string[]> {
+    return this.http.get<ResponseEleccionDTO[]>('/api/eleccion/elecciones').pipe(
+      map(elecciones => elecciones.map(e => e.nombre)),
+      catchError(() =>
+        of(['Lugar de votacion actual', 'Elecciones Congreso 2026', 'Elecciones Presidenciales 2026'])
+      )
+    );
   }
 
-  /**
-   * Consulta el lugar de votación de un ciudadano.
-   * Cuando se integre con el backend real, reemplazar el cuerpo
-   * por una llamada HttpClient: this.http.get<...>(`/api/lugar-votacion?cedula=...`)
-   */
   consultar(cedula: string, eleccion: string): Observable<ConsultaLugarVotacionResult> {
-    // Reemplazar con llamada HTTP real cuando el backend esté disponible:
-    // return this.http.get<ConsultaLugarVotacionResult>(
-    //   `/api/electoral/lugar-votacion?cedula=${cedula}&eleccion=${encodeURIComponent(eleccion)}`
-    // );
     return of({ found: false });
   }
 }

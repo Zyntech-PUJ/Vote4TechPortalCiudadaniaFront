@@ -1,5 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 
 export interface ConsultaJuradoConfig {
   tituloEvento: string;
@@ -14,8 +16,21 @@ export interface ConsultaJuradoResult {
   mensaje: string;
 }
 
+interface ResponseEleccionJuradoDTO {
+  idAsignacionJurado: number;
+  nombreEleccion: string;
+  tipoJurado: string;
+  numeroMesa: number;
+  fechaCapacitacion: string;
+  estado: string;
+  nombreCiudadano: string;
+  generoCiudadano: string;
+}
+
 @Injectable({ providedIn: 'root' })
 export class ConsultaJuradoService {
+  private readonly http = inject(HttpClient);
+
   getConfig(): ConsultaJuradoConfig {
     return {
       tituloEvento: 'Consulta nacional de jurados de votacion',
@@ -31,10 +46,19 @@ export class ConsultaJuradoService {
       return of({ found: false, mensaje: 'Debe ingresar un numero de cedula valido.' });
     }
 
-    // Reemplazar con llamada HTTP real cuando el backend este disponible.
-    return of({
-      found: false,
-      mensaje: 'No se encontro designacion de jurado para el documento ingresado.'
-    });
+    return this.http
+      .get<ResponseEleccionJuradoDTO>(`/api/eleccion-jurado/cedula/${encodeURIComponent(cedula)}`)
+      .pipe(
+        map(j => ({
+          found: true,
+          mensaje: `${j.nombreCiudadano}, usted fue designado como jurado tipo ${j.tipoJurado} en la eleccion "${j.nombreEleccion}", mesa ${j.numeroMesa}. Estado: ${j.estado}.`
+        })),
+        catchError((err) => {
+          if (err.status === 404) {
+            return of({ found: false, mensaje: 'No se encontro designacion de jurado para el documento ingresado.' });
+          }
+          return of({ found: false, mensaje: 'No fue posible consultar la designacion de jurado en este momento. Intente nuevamente.' });
+        })
+      );
   }
 }

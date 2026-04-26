@@ -1,5 +1,16 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { HttpClient } from '@angular/common/http';
+import { toSignal } from '@angular/core/rxjs-interop';
+import { catchError, of } from 'rxjs';
+
+interface ResponseCandidatoDTO {
+  idCandidato: number;
+  nombre: string;
+  numero: string;
+  fotoUrl: string;
+  partidoLogoUrl: string;
+}
 
 @Component({
   selector: 'app-inscripcion-candidatos-page',
@@ -9,6 +20,15 @@ import { RouterLink } from '@angular/router';
   styleUrl: './inscripcion-candidatos-page.component.css'
 })
 export class InscripcionCandidatosPageComponent {
+  private readonly http = inject(HttpClient);
+
+  readonly candidatos = toSignal(
+    this.http.get<ResponseCandidatoDTO[]>('/api/candidato/candidatos').pipe(
+      catchError(() => of([] as ResponseCandidatoDTO[]))
+    ),
+    { initialValue: [] as ResponseCandidatoDTO[] }
+  );
+
   protected readonly documentos = [
     'Documento de identidad original y copia ampliada al 150%.',
     'Formulario oficial de inscripcion diligenciado y firmado.',

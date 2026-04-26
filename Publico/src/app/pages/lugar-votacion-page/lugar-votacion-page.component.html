@@ -53,7 +53,7 @@
             required
           >
             <option value="" disabled hidden>lugar de votación actual...</option>
-            @for (e of elecciones; track e) {
+            @for (e of elecciones(); track e) {
               <option [value]="e">{{ e }}</option>
             }
           </select>

@@ -28,6 +28,23 @@
       </ol>
     </section>
 
+    @if (candidatos().length > 0) {
+      <section class="cand-panel">
+        <h2>Candidatos inscritos</h2>
+        <ul class="cand-candidatos-list">
+          @for (c of candidatos(); track c.idCandidato) {
+            <li class="cand-candidato-item">
+              @if (c.fotoUrl) {
+                <img [src]="c.fotoUrl" [alt]="c.nombre" class="cand-candidato-foto" />
+              }
+              <span class="cand-candidato-nombre">{{ c.nombre }}</span>
+              <span class="cand-candidato-numero">#{{ c.numero }}</span>
+            </li>
+          }
+        </ul>
+      </section>
+    }
+
     <section class="cand-alert" aria-label="Aviso importante">
       <h3>Importante</h3>
       <p>
