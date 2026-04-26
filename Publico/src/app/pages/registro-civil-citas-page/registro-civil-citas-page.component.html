@@ -1,0 +1,91 @@
+<section class="rcc-page" aria-label="Agendamiento presencial registro civil">
+  <header class="rcc-hero">
+    <div class="rcc-hero__content">
+      <a routerLink="/" class="rcc-back-link">Volver al menu principal</a>
+      <a routerLink="/registro-civil-e-identificacion" class="rcc-back-link rcc-back-link--secondary">Volver a registro civil</a>
+      <h1>Agendamiento de citas - Registro civil e identificacion</h1>
+      <p>Este modulo es informativo. Los tramites se realizan presencialmente en la Registraduria.</p>
+    </div>
+  </header>
+
+  <main class="rcc-main">
+    <section class="rcc-alert" aria-label="Aviso importante">
+      <h2>Importante</h2>
+      <p>No se realizan tramites virtuales. La cita solo reserva turno para atencion presencial y entrega de documentos.</p>
+    </section>
+
+    <div class="rcc-layout">
+      <form class="rcc-form" (ngSubmit)="agendar()" #f="ngForm" novalidate>
+        <label for="tramite">Tipo de tramite</label>
+        <select id="tramite" name="tramite" [(ngModel)]="tramite" required>
+          <option value="" disabled selected hidden>Seleccione tramite</option>
+          @for (item of tramites; track item) {
+            <option [value]="item">{{ item }}</option>
+          }
+        </select>
+
+        <label for="tipo">Tipo de documento</label>
+        <select id="tipo" name="tipo" [(ngModel)]="tipoDocumento" required>
+          <option value="CC">CC</option>
+          <option value="TI">TI</option>
+          <option value="CE">CE</option>
+          <option value="PA">PA</option>
+        </select>
+
+        <label for="numero">Numero de documento</label>
+        <input id="numero" name="numero" type="text" [(ngModel)]="numeroDocumento" required />
+
+        <label for="nombres">Nombres completos</label>
+        <input id="nombres" name="nombres" type="text" [(ngModel)]="nombres" required />
+
+        <label for="correo">Correo electronico</label>
+        <input id="correo" name="correo" type="email" [(ngModel)]="correo" required />
+
+        <label for="telefono">Telefono</label>
+        <input id="telefono" name="telefono" type="text" [(ngModel)]="telefono" required />
+
+        <label for="sede">Sede de atencion</label>
+        <select id="sede" name="sede" [(ngModel)]="sede" required>
+          <option value="" disabled selected hidden>Seleccione sede</option>
+          @for (item of sedes; track item) {
+            <option [value]="item">{{ item }}</option>
+          }
+        </select>
+
+        <label for="fecha">Fecha</label>
+        <input id="fecha" name="fecha" type="date" [(ngModel)]="fecha" required />
+
+        <label for="hora">Hora</label>
+        <select id="hora" name="hora" [(ngModel)]="hora" required>
+          <option value="" disabled selected hidden>Seleccione hora</option>
+          @for (item of horarios; track item) {
+            <option [value]="item">{{ item }}</option>
+          }
+        </select>
+
+        @if (f.submitted && f.invalid) {
+          <p class="rcc-error">Complete todos los campos para agendar su cita.</p>
+        }
+
+        <button type="submit">Agendar cita presencial</button>
+      </form>
+
+      <aside class="rcc-result">
+        @if (!resultado) {
+          <h3>Antes de asistir</h3>
+          <ul>
+            <li>Lleve documentos originales y copias legibles.</li>
+            <li>Presente su codigo de cita en recepcion.</li>
+            <li>Verifique horarios y direccion de la sede elegida.</li>
+          </ul>
+        } @else {
+          <h3>Cita registrada</h3>
+          <p>{{ resultado.mensaje }}</p>
+          <p><strong>Codigo:</strong> {{ resultado.codigo }}</p>
+          <p><strong>Fecha:</strong> {{ fecha }} - <strong>Hora:</strong> {{ hora }}</p>
+          <p><strong>Sede:</strong> {{ sede }}</p>
+        }
+      </aside>
+    </div>
+  </main>
+</section>

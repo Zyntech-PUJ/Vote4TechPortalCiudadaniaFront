@@ -18,7 +18,7 @@ export interface ConsultaJuradoResult {
 export class ConsultaJuradoService {
   getConfig(): ConsultaJuradoConfig {
     return {
-      tituloEvento: 'Elecciones Atipicas Alcalde - 03 de mayo de 2026 - Fonseca la Guajira.',
+      tituloEvento: 'Consulta nacional de jurados de votacion',
       subtitulo: 'Consulta si fuiste designado como jurado de votacion',
       ayuda: 'Por favor digite su numero de cedula y de clic en consultar.',
       recordatorio: 'Recuerde: A mas tardar 7:30 am los jurados de votacion deberan estar ubicados en la mesa en la cual prestaran su servicio.',

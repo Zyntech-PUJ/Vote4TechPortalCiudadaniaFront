@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
+import { NoticiasComponent } from '../noticias/noticias.component';
 
 @Component({
   selector: 'app-registraduria-landing',
   standalone: true,
-  imports: [RouterLink],
+  imports: [RouterLink, NoticiasComponent],
   templateUrl: './registraduria-landing.component.html',
   styleUrl: './registraduria-landing.component.css'
 })

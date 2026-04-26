@@ -129,6 +129,105 @@
   color: #b3261e;
 }
 
+/* Estilos para mensaje de éxito */
+.ci-success-message {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  background: linear-gradient(135deg, #e8f5e9 0%, #f1f8e9 100%);
+  border-left: 5px solid #4caf50;
+  padding: 2rem 1.5rem !important;
+  animation: slideUp 0.5s ease-out;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.success-icon {
+  font-size: 3rem;
+  color: #4caf50;
+  font-weight: bold;
+  margin-bottom: 1rem;
+  width: 70px;
+  height: 70px;
+  background: rgba(76, 175, 80, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ci-success-message h2 {
+  color: #2e7d32;
+  font-size: 1.8rem;
+  margin: 0 0 1rem 0;
+  font-weight: 700;
+}
+
+.success-main {
+  color: #388e3c;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 0 0 1.5rem 0;
+  line-height: 1.5;
+}
+
+.email-info {
+  background: rgba(76, 175, 80, 0.05);
+  border-radius: 1rem;
+  padding: 1.2rem;
+  margin: 1rem 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.email-info p {
+  margin: 0.5rem 0;
+  color: #1b5e20;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+.email-info p strong {
+  color: #2e7d32;
+  font-weight: 700;
+}
+
+.note {
+  font-size: 0.85rem !important;
+  color: #558b2f;
+  font-style: italic;
+  margin-top: 0.8rem !important;
+}
+
+.ci-btn-reset {
+  margin-top: 1.5rem;
+  height: 44px;
+  border: none;
+  border-radius: 999px;
+  background: #4caf50;
+  color: #fff;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 0.3s;
+  width: 100%;
+  max-width: 280px;
+}
+
+.ci-btn-reset:hover {
+  background: #388e3c;
+}
+
 @media (max-width: 980px) {
   .ci-layout {
     grid-template-columns: 1fr;

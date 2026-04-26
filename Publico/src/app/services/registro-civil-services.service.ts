@@ -9,15 +9,15 @@ export interface RegistroCivilService {
 export class RegistroCivilServicesService {
   getServices(): RegistroCivilService[] {
     return [
-      { label: 'Registro civil'                    },
-      { label: 'Tarjeta de identidad'              },
-      { label: 'Cedula de ciudadania'              },
-      { label: 'Certificados'                      },
-      { label: 'Colombianos en el exterior'        },
-      { label: 'Tarifas'                           },
-      { label: 'Consulta registro civil'           },
-      { label: 'Consulta estado de tu documento'   },
-      { label: 'Citas'                             },
+      { label: 'Registro civil', route: '/registro-civil-e-identificacion/registro-civil' },
+      { label: 'Tarjeta de identidad', route: '/registro-civil-e-identificacion/tarjeta-identidad' },
+      { label: 'Cedula de ciudadania', route: '/registro-civil-e-identificacion/cedula-ciudadania' },
+      { label: 'Certificados', route: '/registro-civil-e-identificacion/certificados' },
+      { label: 'Colombianos en el exterior', route: '/registro-civil-e-identificacion/colombianos-exterior' },
+      { label: 'Tarifas', route: '/registro-civil-e-identificacion/tarifas' },
+      { label: 'Consulta registro civil', route: '/registro-civil-e-identificacion/consulta-registro-civil' },
+      { label: 'Consulta estado de tu documento', route: '/registro-civil-e-identificacion/estado-documento' },
+      { label: 'Citas', route: '/registro-civil-e-identificacion/citas-presenciales' },
     ];
   }
 }

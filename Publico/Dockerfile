@@ -19,7 +19,7 @@ RUN npm run build
 FROM nginx:alpine AS production
 
 # Copia los archivos compilados de Angular
-COPY --from=builder /app/dist/portal-privado/browser /usr/share/nginx/html
+COPY --from=builder /app/dist/Publico/browser /usr/share/nginx/html
 
 # Copia la configuracion de Nginx (API gateway + SPA routing)
 COPY docker/nginx.conf /etc/nginx/conf.d/default.conf

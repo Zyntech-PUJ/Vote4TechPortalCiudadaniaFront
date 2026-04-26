@@ -3,11 +3,12 @@ import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { NumericOnlyDirective } from '../../shared/directives/numeric-only.directive';
 import { ComprobanteInscripcionService } from '../../services/comprobante-inscripcion.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-comprobante-inscripcion-page',
   standalone: true,
-  imports: [RouterLink, FormsModule, NumericOnlyDirective],
+  imports: [RouterLink, FormsModule, NumericOnlyDirective, CommonModule],
   templateUrl: './comprobante-inscripcion-page.component.html',
   styleUrl: './comprobante-inscripcion-page.component.css'
 })
@@ -19,6 +20,7 @@ export class ComprobanteInscripcionPageComponent {
   fechaExpedicion = '';
   fechaNacimiento = '';
   resultado = '';
+  enviado = false;
 
   readonly config = this.comprobanteSvc.getConfig();
 
@@ -28,7 +30,8 @@ export class ComprobanteInscripcionPageComponent {
       return;
     }
 
-    // TODO: reemplazar con llamada real al backend
-    this.resultado = 'Solicitud enviada correctamente. Su comprobante sera validado en breve.';
+    // Simular envío
+    this.enviado = true;
+    this.resultado = ''; // Limpiar mensaje de error anterior
   }
 }

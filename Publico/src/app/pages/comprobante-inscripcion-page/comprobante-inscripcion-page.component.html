@@ -1,7 +1,7 @@
 <section class="ci-page" aria-label="Consulta comprobante del tramite de inscripcion">
   <div class="ci-layout">
     <section class="ci-left">
-      <a routerLink="/electoral" class="ci-back-link">Volver a servicios electorales</a>
+      <a routerLink="/" class="ci-back-link">Volver al menu principal</a>
 
       <div class="ci-brand">
         <img src="assets/logoRegistraduria.jpg" alt="Logo Registraduria Nacional del Estado Civil" />
@@ -10,57 +10,73 @@
     </section>
 
     <section class="ci-right">
-      <article class="ci-card">
-        <div class="ci-info-box">{{ config.info }}</div>
+      <!-- Mensaje de éxito después de enviar -->
+      @if (enviado) {
+        <article class="ci-card ci-success-message">
+          <div class="success-icon">✓</div>
+          <h2>Solicitud Enviada Exitosamente</h2>
+          <p class="success-main">Tu comprobante de inscripción será enviado a tu correo electrónico registrado.</p>
+          <div class="email-info">
+            <p><strong>⏱️ Tiempo estimado:</strong> Próximas 24 horas</p>
+            <p class="note">Recuerda revisar tu bandeja de correo no deseado en caso de no recibirlo en tu bandeja principal.</p>
+          </div>
+          <button class="ci-btn-reset" (click)="enviado = false; cedula = ''; fechaExpedicion = ''; fechaNacimiento = '';">
+            Realizar otra consulta
+          </button>
+        </article>
+      } @else {
+        <article class="ci-card">
+          <div class="ci-info-box">{{ config.info }}</div>
 
-        <form class="ci-form" (ngSubmit)="ingresar()" #f="ngForm" novalidate>
-          <label for="tipo">Tipo de documento</label>
-          <select id="tipo" name="tipo" [(ngModel)]="tipoDocumento">
-            @for (item of config.tiposDocumento; track item) {
-              <option [value]="item">{{ item }}</option>
+          <form class="ci-form" (ngSubmit)="ingresar()" #f="ngForm" novalidate>
+            <label for="tipo">Tipo de documento</label>
+            <select id="tipo" name="tipo" [(ngModel)]="tipoDocumento">
+              @for (item of config.tiposDocumento; track item) {
+                <option [value]="item">{{ item }}</option>
+              }
+            </select>
+
+            <label for="cedula">Digite su numero de cedula</label>
+            <input
+              id="cedula"
+              name="cedula"
+              type="text"
+              appNumericOnly
+              inputmode="numeric"
+              [(ngModel)]="cedula"
+              required
+            />
+
+            <label for="expedicion">Ingrese fecha de expedicion</label>
+            <input
+              id="expedicion"
+              name="expedicion"
+              type="text"
+              placeholder="aaaa/mm/dd"
+              [(ngModel)]="fechaExpedicion"
+              required
+            />
+
+            <label for="nacimiento">Ingrese fecha de nacimiento</label>
+            <input
+              id="nacimiento"
+              name="nacimiento"
+              type="text"
+              placeholder="aaaa/mm/dd"
+              [(ngModel)]="fechaNacimiento"
+              required
+            />
+
+            <button type="submit">Ingresar</button>
+
+            @if (f.submitted && f.invalid) {
+              <p class="ci-msg ci-msg--error">Complete todos los campos.</p>
+            } @else if (resultado) {
+              <p class="ci-msg ci-msg--error">{{ resultado }}</p>
             }
-          </select>
-
-          <label for="cedula">Digite su numero de cedula</label>
-          <input
-            id="cedula"
-            name="cedula"
-            type="text"
-            appNumericOnly
-            inputmode="numeric"
-            [(ngModel)]="cedula"
-            required
-          />
-
-          <label for="expedicion">Ingrese fecha de expedicion</label>
-          <input
-            id="expedicion"
-            name="expedicion"
-            type="text"
-            placeholder="aaaa/mm/dd"
-            [(ngModel)]="fechaExpedicion"
-            required
-          />
-
-          <label for="nacimiento">Ingrese fecha de nacimiento</label>
-          <input
-            id="nacimiento"
-            name="nacimiento"
-            type="text"
-            placeholder="aaaa/mm/dd"
-            [(ngModel)]="fechaNacimiento"
-            required
-          />
-
-          <button type="submit">Ingresar</button>
-
-          @if (f.submitted && f.invalid) {
-            <p class="ci-msg ci-msg--error">Complete todos los campos.</p>
-          } @else if (resultado) {
-            <p class="ci-msg">{{ resultado }}</p>
-          }
-        </form>
-      </article>
+          </form>
+        </article>
+      }
     </section>
   </div>
 </section>

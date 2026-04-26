@@ -1,59 +1,134 @@
-# Publico
+# Vote4Tech Portal Ciudadania - Frontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.1.
+Guia rapida para correr el sistema completo (frontend + backend).
 
-## Development server
+## Estructura esperada
 
-To start a local development server, run:
+- Backend: `Vote4TechPortalCiudadaniaBack`
+- Frontend: `Vote4TechPortalCiudadaniaFront/Publico`
 
-```bash
-ng serve
+## Requisitos
+
+### Backend
+
+- Java 21
+- Maven 3.9+
+- Acceso a PostgreSQL
+
+### Frontend
+
+- Node.js 20+
+- npm 10+
+- Docker y Docker Compose (solo para despliegue con Nginx + Cloudflare)
+
+## 1. Correr en local (desarrollo)
+
+### 1.1 Backend
+
+Ir a la carpeta del backend y configurar `src/main/resources/application.properties` con tu base de datos.
+
+Ejemplo minimo:
+
+```properties
+spring.application.name=PortalRegistraduriaBack
+server.port=8080
+spring.datasource.url=jdbc:postgresql://<HOST_DB>:5432/<NOMBRE_DB>
+spring.datasource.username=<USUARIO_DB>
+spring.datasource.password=<CLAVE_DB>
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+spring.jpa.properties.hibernate.format_sql=true
+config.cors.allowed-origins=http://localhost:4200
+logging.level.org.springframework=INFO
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Levantar backend:
 
 ```bash
-ng generate component component-name
+cd Vote4TechPortalCiudadaniaBack
+mvn spring-boot:run
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+API disponible en:
+
+```text
+http://localhost:8080
+```
+
+### 1.2 Frontend
 
 ```bash
-ng generate --help
+cd Vote4TechPortalCiudadaniaFront/Publico
+npm ci
+npm start
 ```
 
-## Building
+Frontend disponible en:
 
-To build the project run:
+```text
+http://localhost:4200
+```
+
+## 2. Build de produccion (frontend)
 
 ```bash
-ng build
+cd Vote4TechPortalCiudadaniaFront/Publico
+npm run build
 ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+Salida en:
 
-## Running unit tests
+```text
+dist/Publico/browser
+```
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+## 3. Despliegue en VM (modo productivo usado por el proyecto)
+
+### 3.1 Backend (VM backend)
 
 ```bash
-ng test
+cd ~/Vote4TechPortalCiudadaniaBack
+mvn spring-boot:run 2>&1 | tee /tmp/log.txt
 ```
 
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
+### 3.2 Frontend con Docker + Nginx + Cloudflare Quick Tunnel (VM frontend)
 
 ```bash
-ng e2e
+cd ~/Vote4TechPortalCiudadaniaFront/Publico
+docker compose -f docker/docker-compose.prod.yml up -d --build
 ```
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Ver contenedores:
 
-## Additional Resources
+```bash
+docker ps
+```
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+Obtener URL publica de Cloudflare:
+
+```bash
+docker logs $(docker ps -q --filter name=cloudflared) 2>&1 | grep trycloudflare
+```
+
+## 4. Verificaciones rapidas
+
+Desde la VM frontend, validar que el proxy API responde JSON:
+
+```bash
+curl http://localhost/api/eleccion/elecciones
+```
+
+Si responde HTML de Angular, revisar `docker/nginx.conf` y la IP configurada en `proxy_pass`.
+
+## 5. QA (cambio de IPs)
+
+Para QA, ajustar:
+
+- En backend: `spring.datasource.url` y `config.cors.allowed-origins`
+- En frontend: `docker/nginx.conf` en la linea `proxy_pass` con la IP del backend QA
+
+Luego reconstruir frontend:
+
+```bash
+docker compose -f docker/docker-compose.prod.yml up -d --build
+```

@@ -13,6 +13,9 @@ import { InscripcionCandidatosPageComponent } from './pages/inscripcion-candidat
 import { MecanismosParticipacionPageComponent } from './pages/mecanismos-participacion-page/mecanismos-participacion-page.component';
 import { ComprobanteInscripcionPageComponent } from './pages/comprobante-inscripcion-page/comprobante-inscripcion-page.component';
 import { ResultadosHistoricosPageComponent } from './pages/resultados-historicos-page/resultados-historicos-page.component';
+import { ServiciosCiudadaniaPageComponent } from './pages/servicios-ciudadania-page/servicios-ciudadania-page.component';
+import { RegistroCivilDetallePageComponent } from './pages/registro-civil-detalle-page/registro-civil-detalle-page.component';
+import { RegistroCivilCitasPageComponent } from './pages/registro-civil-citas-page/registro-civil-citas-page.component';
 
 export const routes: Routes = [
 	{
@@ -20,8 +23,20 @@ export const routes: Routes = [
 		component: RegistraduriaLandingComponent
 	},
 	{
+		path: 'servicios-ciudadania',
+		component: ServiciosCiudadaniaPageComponent
+	},
+	{
 		path: 'registro-civil-e-identificacion',
 		component: RegistroCivilPageComponent
+	},
+	{
+		path: 'registro-civil-e-identificacion/citas-presenciales',
+		component: RegistroCivilCitasPageComponent
+	},
+	{
+		path: 'registro-civil-e-identificacion/:servicio',
+		component: RegistroCivilDetallePageComponent
 	},
 	{
 		path: 'electoral',

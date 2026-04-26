@@ -29,7 +29,11 @@
 
       <div class="registro-grid">
         @for (item of serviceGroups; track item.label) {
-          <button type="button" class="registro-card">{{ item.label }}</button>
+          @if (item.route) {
+            <a [routerLink]="item.route" class="registro-card registro-card--link">{{ item.label }}</a>
+          } @else {
+            <button type="button" class="registro-card">{{ item.label }}</button>
+          }
         }
       </div>
     </section>

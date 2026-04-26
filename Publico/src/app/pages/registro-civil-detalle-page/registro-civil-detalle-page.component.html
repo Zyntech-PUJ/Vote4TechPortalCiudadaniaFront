@@ -1,0 +1,50 @@
+<section class="rcd-page" aria-label="Informacion de tramite de registro civil">
+  <header class="rcd-hero">
+    <div class="rcd-hero__content">
+      <a routerLink="/" class="rcd-back-link">Volver al menu principal</a>
+      <a routerLink="/registro-civil-e-identificacion" class="rcd-back-link rcd-back-link--secondary">Volver a registro civil</a>
+
+      <h1>{{ detalle.titulo }}</h1>
+      <p>{{ detalle.resumen }}</p>
+    </div>
+  </header>
+
+  <main class="rcd-main">
+    <section class="rcd-alert" aria-label="Aviso de presencialidad">
+      <h2>Atencion presencial obligatoria</h2>
+      <p>{{ detalle.presencial }}</p>
+    </section>
+
+    <section class="rcd-panel">
+      <h3>Documentos orientativos</h3>
+      <ul>
+        @for (doc of detalle.documentos; track doc) {
+          <li>{{ doc }}</li>
+        }
+      </ul>
+    </section>
+
+    <section class="rcd-panel">
+      <h3>Pasos recomendados</h3>
+      <ol>
+        @for (paso of detalle.pasos; track paso) {
+          <li>{{ paso }}</li>
+        }
+      </ol>
+    </section>
+
+    <section class="rcd-panel">
+      <h3>Notas importantes</h3>
+      <ul>
+        @for (nota of detalle.observaciones; track nota) {
+          <li>{{ nota }}</li>
+        }
+      </ul>
+    </section>
+
+    <section class="rcd-cta" aria-label="Agendamiento presencial">
+      <p>Para continuar con este tramite, agende una cita presencial en la Registraduria.</p>
+      <a routerLink="/registro-civil-e-identificacion/citas-presenciales" class="rcd-btn">Agendar cita presencial</a>
+    </section>
+  </main>
+</section>

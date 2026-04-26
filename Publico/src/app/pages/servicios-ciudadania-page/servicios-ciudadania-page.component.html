@@ -1,0 +1,30 @@
+<section class="servicios-page" aria-label="Servicios de Atención a la Ciudadanía">
+  <div class="servicios-container">
+    <header class="servicios-header">
+      <a routerLink="/" class="servicios-back-link">← Volver al inicio</a>
+      <h1>Servicios de Atención a la Ciudadanía</h1>
+      <p class="servicios-subtitle">Accede a todos nuestros servicios disponibles</p>
+    </header>
+
+    @for (categoria of categorias; track categoria) {
+      <div class="servicios-category">
+        <h2 class="categoria-titulo">{{ categoria }}</h2>
+
+        <div class="servicios-grid">
+          @for (servicio of getServiciosPorCategoria(categoria); track servicio.titulo) {
+            <a [routerLink]="servicio.ruta" class="servicio-card">
+              <div class="servicio-icon">
+                <i class="icon-placeholder">{{ servicio.icono }}</i>
+              </div>
+              <div class="servicio-content">
+                <h3>{{ servicio.titulo }}</h3>
+                <p>{{ servicio.descripcion }}</p>
+              </div>
+              <div class="servicio-arrow">→</div>
+            </a>
+          }
+        </div>
+      </div>
+    }
+  </div>
+</section>

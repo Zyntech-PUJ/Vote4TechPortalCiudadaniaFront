@@ -1,0 +1,32 @@
+<section class="noticias-section">
+  <div class="noticias-container">
+    <header class="noticias-header">
+      <h2>Últimas Noticias</h2>
+      <p class="subtitle">Mantente informado sobre los servicios electorales y novedades de la Registraduría</p>
+    </header>
+
+    <div class="noticias-list">
+      @for (noticia of noticias; track noticia.id) {
+        <article class="noticia-card">
+          @if (noticia.imagen) {
+            <div class="noticia-imagen">
+              <img [src]="noticia.imagen" [alt]="noticia.titulo" />
+            </div>
+          }
+
+          <div class="noticia-content">
+            <div class="noticia-meta">
+              <span class="noticia-categoria">{{ noticia.categoria }}</span>
+              <span class="noticia-fecha">{{ formatearFecha(noticia.fecha) }}</span>
+            </div>
+
+            <h3 class="noticia-titulo">{{ noticia.titulo }}</h3>
+            <p class="noticia-descripcion">{{ noticia.descripcion }}</p>
+
+            <a href="#" class="noticia-link">Leer más →</a>
+          </div>
+        </article>
+      }
+    </div>
+  </div>
+</section>

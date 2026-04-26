@@ -21,10 +21,10 @@ export interface CitaComprobanteResult {
 export class ComprobanteInscripcionCitasService {
   getSedes(): string[] {
     return [
-      'Bogota - Sede CAN',
-      'Medellin - Centro de Servicios',
-      'Cali - Punto de Atencion Electoral',
-      'Barranquilla - Oficina Regional'
+      'Sede principal nacional',
+      'Sede regional mas cercana',
+      'Punto de atencion electoral habilitado',
+      'Atencion virtual'
     ];
   }
 
