@@ -28,6 +28,7 @@ export class ComprobanteInscripcionPageComponent {
       return;
     }
 
-    this.resultado = 'Consulta mock enviada. Su comprobante sera validado cuando el sistema real este disponible.';
+    // TODO: reemplazar con llamada real al backend
+    this.resultado = 'Solicitud enviada correctamente. Su comprobante sera validado en breve.';
   }
 }

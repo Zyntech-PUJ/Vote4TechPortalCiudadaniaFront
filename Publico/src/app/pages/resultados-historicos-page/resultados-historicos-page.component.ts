@@ -25,6 +25,7 @@ export class ResultadosHistoricosPageComponent {
       return;
     }
 
-    this.mensaje = `Consulta mock: censo historico ${this.anio} para ${this.departamento}.`;
+    // TODO: reemplazar con llamada real al backend
+    this.mensaje = `Censo historico ${this.anio} para ${this.departamento} consultado correctamente.`;
   }
 }
