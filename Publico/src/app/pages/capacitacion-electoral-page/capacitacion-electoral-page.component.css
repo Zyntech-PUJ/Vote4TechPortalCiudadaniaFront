@@ -9,6 +9,41 @@
   background: linear-gradient(180deg, #eef3f8 0%, #f8fbfe 50%, #ffffff 100%);
 }
 
+.cap-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background: var(--reg-white);
+  border-bottom: 1px solid #dde6f0;
+}
+
+.cap-logo-link { display: inline-block; }
+
+.cap-logo {
+  height: 64px;
+  width: auto;
+  object-fit: contain;
+}
+
+.cap-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.9rem;
+  color: #0b2741;
+}
+
+.cap-breadcrumb a {
+  color: #1566b4;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.cap-breadcrumb a:hover { text-decoration: underline; }
+
+.cap-breadcrumb span:not(:last-child) { color: #8a9bb0; }
+
 .cap-hero {
   background: linear-gradient(180deg, rgba(7, 39, 75, 0.95), rgba(10, 60, 114, 0.98));
   color: var(--reg-white);

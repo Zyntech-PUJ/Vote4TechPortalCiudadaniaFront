@@ -1,11 +1,25 @@
-<section class="cap-page" aria-label="Capacitacion electoral mock">
-  <header class="cap-hero">
+<div class="cap-page">
+  <header class="cap-topbar">
+    <a routerLink="/" class="cap-logo-link">
+      <img src="assets/logoRegistraduria.jpg" alt="Registraduria Nacional del Estado Civil" class="cap-logo" />
+    </a>
+
+    <nav class="cap-breadcrumb" aria-label="Ruta de navegacion">
+      <a routerLink="/">Inicio</a>
+      <span>/</span>
+      <a routerLink="/electoral">Electoral</a>
+      <span>/</span>
+      <span>Capacitación Electoral</span>
+    </nav>
+  </header>
+
+  <section class="cap-hero" aria-label="Capacitacion electoral mock">
     <div class="cap-hero__content">
       <a routerLink="/electoral" class="cap-back-link">Volver a servicios electorales</a>
       <h1>Capacitacion electoral</h1>
       <p>Contenido mockeado de rutas de capacitacion electoral.</p>
     </div>
-  </header>
+  </section>
 
   <main class="cap-main">
     <div class="cap-grid">
@@ -23,4 +37,4 @@
       }
     </div>
   </main>
-</section>
+</div>

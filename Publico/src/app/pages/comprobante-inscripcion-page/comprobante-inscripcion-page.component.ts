@@ -7,7 +7,7 @@ import { ComprobanteInscripcionService } from '../../services/comprobante-inscri
 @Component({
   selector: 'app-comprobante-inscripcion-page',
   standalone: true,
-  imports: [RouterLink, FormsModule, NumericOnlyDirective],
+  imports: [RouterLink, FormsModule],
   templateUrl: './comprobante-inscripcion-page.component.html',
   styleUrl: './comprobante-inscripcion-page.component.css'
 })

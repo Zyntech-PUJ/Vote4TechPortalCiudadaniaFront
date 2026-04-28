@@ -15,7 +15,7 @@ export class CensoElectoralService {
         buttonLabel: '→'
       },
       {
-        title: 'Consulta los censos historicos utilizados para los procesos electorales desde el ano 2018',
+        title: 'Consulta los censos históricos utilizados para los procesos electorales desde el año 2018',
         buttonLabel: '→'
       }
     ];

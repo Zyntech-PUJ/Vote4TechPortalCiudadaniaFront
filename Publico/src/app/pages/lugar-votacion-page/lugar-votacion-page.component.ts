@@ -15,14 +15,11 @@ export class LugarVotacionPageComponent {
   private readonly lugarVotacionSvc = inject(LugarVotacionService);
 
   cedula = '';
-  eleccion = '';
   resultado: ConsultaLugarVotacionResult | null = null;
 
-  readonly elecciones = this.lugarVotacionSvc.getElecciones();
-
   consultar() {
-    if (!this.cedula.trim() || !this.eleccion) return;
-    this.lugarVotacionSvc.consultar(this.cedula, this.eleccion).subscribe(res => {
+    if (!this.cedula.trim()) return;
+    this.lugarVotacionSvc.consultar(this.cedula).subscribe(res => {
       this.resultado = res;
     });
   }

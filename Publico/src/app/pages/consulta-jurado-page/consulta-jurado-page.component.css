@@ -17,7 +17,30 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 1.2rem 1.5rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
+
+.cj-logo-link { display: inline-block; }
+
+.cj-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.9rem;
+  color: var(--reg-ink);
+}
+
+.cj-breadcrumb a {
+  color: var(--reg-blue-700);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.cj-breadcrumb a:hover { text-decoration: underline; }
+
+.cj-breadcrumb span:not(:last-child) { color: #8a9bb0; }
 
 .cj-logo {
   height: 80px;

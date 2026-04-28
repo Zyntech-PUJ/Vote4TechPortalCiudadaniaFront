@@ -1,5 +1,19 @@
-<section class="ci-page" aria-label="Consulta comprobante del tramite de inscripcion">
-  <div class="ci-layout">
+<div class="ci-page">
+  <header class="ci-topbar">
+    <a routerLink="/" class="ci-logo-link">
+      <img src="assets/logoRegistraduria.jpg" alt="Registraduria Nacional del Estado Civil" class="ci-logo" />
+    </a>
+
+    <nav class="ci-breadcrumb" aria-label="Ruta de navegacion">
+      <a routerLink="/">Inicio</a>
+      <span>/</span>
+      <a routerLink="/electoral">Electoral</a>
+      <span>/</span>
+      <span>Comprobante de Inscripción</span>
+    </nav>
+  </header>
+
+  <section class="ci-layout" aria-label="Consulta comprobante del tramite de inscripcion">
     <section class="ci-left">
       <a routerLink="/electoral" class="ci-back-link">Volver a servicios electorales</a>
 
@@ -62,5 +76,4 @@
         </form>
       </article>
     </section>
-  </div>
-</section>
+  </section>
