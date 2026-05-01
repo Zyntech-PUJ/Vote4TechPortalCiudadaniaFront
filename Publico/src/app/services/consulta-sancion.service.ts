@@ -18,7 +18,7 @@ export interface ConsultaSancionResult {
 
 @Injectable({ providedIn: 'root' })
 export class ConsultaSancionService {
-  private readonly endpoint = '/api/electoral/consulta-sancion';
+  private readonly endpoint = 'http://localhost:8082/api/electoral/consulta-sancion';
 
   constructor(private readonly http: HttpClient) {}
 
@@ -44,8 +44,9 @@ export class ConsultaSancionService {
       .pipe(
         map((res) => ({
           found: !!res.found,
-          mensaje: res.mensaje ?? (res.found ? 'El ciudadano registra sanciones.' : 'No se encontraron sanciones para el documento ingresado.')
+          mensaje: res.mensaje ?? (res.found ? 'El ciudadano registra una sanción. Por favor acerquese a un punto de la registraduría para mayor informacion.' : 'No se encontraron sanciones para el documento ingresado.')
         })),
+
         catchError(() =>
           of({
             found: false,

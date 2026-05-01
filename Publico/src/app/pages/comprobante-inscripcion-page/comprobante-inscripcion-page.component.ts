@@ -3,12 +3,11 @@ import { FormsModule } from '@angular/forms';
 import { RouterLink } from '@angular/router';
 import { NumericOnlyDirective } from '../../shared/directives/numeric-only.directive';
 import { ComprobanteInscripcionService } from '../../services/comprobante-inscripcion.service';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-comprobante-inscripcion-page',
   standalone: true,
-  imports: [RouterLink, FormsModule, NumericOnlyDirective, CommonModule],
+  imports: [RouterLink, FormsModule, NumericOnlyDirective],
   templateUrl: './comprobante-inscripcion-page.component.html',
   styleUrl: './comprobante-inscripcion-page.component.css'
 })
@@ -27,11 +26,11 @@ export class ComprobanteInscripcionPageComponent {
   ingresar(): void {
     if (!this.cedula || !this.fechaExpedicion || !this.fechaNacimiento) {
       this.resultado = 'Complete los datos solicitados.';
+      this.enviado = false;
       return;
     }
 
-    // Simular envío
+    this.resultado = '';
     this.enviado = true;
-    this.resultado = ''; // Limpiar mensaje de error anterior
   }
 }

@@ -11,7 +11,7 @@ import {
 @Component({
   selector: 'app-comprobante-inscripcion-citas-page',
   standalone: true,
-  imports: [RouterLink, FormsModule, NumericOnlyDirective],
+  imports: [RouterLink, FormsModule],
   templateUrl: './comprobante-inscripcion-citas-page.component.html',
   styleUrl: './comprobante-inscripcion-citas-page.component.css'
 })

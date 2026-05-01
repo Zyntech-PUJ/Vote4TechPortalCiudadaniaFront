@@ -1,5 +1,19 @@
-<section class="cand-page" aria-label="Informacion de inscripcion de candidatos">
-  <header class="cand-hero">
+<div class="cand-page">
+  <header class="cand-topbar">
+    <a routerLink="/" class="cand-logo-link">
+      <img src="assets/logoRegistraduria.jpg" alt="Registraduria Nacional del Estado Civil" class="cand-logo" />
+    </a>
+
+    <nav class="cand-breadcrumb" aria-label="Ruta de navegacion">
+      <a routerLink="/">Inicio</a>
+      <span>/</span>
+      <a routerLink="/electoral">Electoral</a>
+      <span>/</span>
+      <span>Inscripción Candidatos</span>
+    </nav>
+  </header>
+
+  <section class="cand-hero" aria-label="Informacion de inscripcion de candidatos">
     <div class="cand-hero__content">
       <a routerLink="/" class="cand-back-link">Volver al menu principal</a>
       <h1>Inscripcion de candidatos</h1>
@@ -7,7 +21,7 @@
         Para este tramite debe acercarse presencialmente a la Registraduria con los documentos requeridos.
       </p>
     </div>
-  </header>
+  </section>
 
   <main class="cand-main">
     <section class="cand-panel">
@@ -53,4 +67,4 @@
       </p>
     </section>
   </main>
-</section>
+</div>

@@ -11,6 +11,41 @@
   background: linear-gradient(180deg, #e9f2fa 0%, #f7fbff 50%, #ffffff 100%);
 }
 
+.cand-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background: var(--reg-white);
+  border-bottom: 1px solid #dde6f0;
+}
+
+.cand-logo-link { display: inline-block; }
+
+.cand-logo {
+  height: 64px;
+  width: auto;
+  object-fit: contain;
+}
+
+.cand-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.9rem;
+  color: var(--reg-ink);
+}
+
+.cand-breadcrumb a {
+  color: var(--reg-blue-700);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.cand-breadcrumb a:hover { text-decoration: underline; }
+
+.cand-breadcrumb span:not(:last-child) { color: #8a9bb0; }
+
 .cand-hero {
   background: linear-gradient(180deg, rgba(7, 39, 75, 0.95), rgba(10, 60, 114, 0.98));
   color: var(--reg-white);

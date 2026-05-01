@@ -13,6 +13,41 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.rh-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background: var(--reg-white);
+  border-bottom: 1px solid #dde6f0;
+}
+
+.rh-logo-link { display: inline-block; }
+
+.rh-logo {
+  height: 64px;
+  width: auto;
+  object-fit: contain;
+}
+
+.rh-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.9rem;
+  color: var(--reg-ink);
+}
+
+.rh-breadcrumb a {
+  color: var(--reg-blue-700);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.rh-breadcrumb a:hover { text-decoration: underline; }
+
+.rh-breadcrumb span:not(:last-child) { color: #8a9bb0; }
+
 .rh-page {
   min-height: 100dvh;
 }
@@ -150,9 +185,9 @@
 }
 
 .rh-filters {
-  width: min(780px, 100%);
+  width: min(980px, 100%);
   display: grid;
-  grid-template-columns: repeat(2, minmax(220px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   justify-content: center;
   gap: 1.1rem;
 }
@@ -202,8 +237,14 @@
   cursor: pointer;
 }
 
-.rh-submit:hover {
+.rh-submit:hover:not(:disabled) {
   background: var(--reg-blue-900);
+}
+
+.rh-submit:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  box-shadow: none;
 }
 
 .rh-message {
@@ -220,6 +261,101 @@
   font-size: 0.88rem;
   font-weight: 700;
   color: #1f3850;
+}
+
+/* CHART STYLES */
+.rh-chart-container {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(0,0,0,0.1);
+  width: 100%;
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.rh-chart-title {
+  text-align: center;
+  color: var(--reg-ink);
+  margin: 0 0 0.5rem 0;
+  font-size: 1.4rem;
+}
+
+.rh-chart-subtitle {
+  text-align: center;
+  color: var(--reg-blue-700);
+  font-weight: 600;
+  margin: 0 0 2.5rem 0;
+  font-size: 1.1rem;
+}
+
+.rh-chart {
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.rh-chart-bar-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.rh-chart-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.rh-candidato-nombre {
+  font-weight: 700;
+  color: var(--reg-ink);
+  font-size: 1.1rem;
+}
+
+.rh-candidato-partido {
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  background-color: rgba(0,0,0,0.04);
+}
+
+.rh-chart-track {
+  width: 100%;
+  height: 28px;
+  background-color: rgba(0, 0, 0, 0.05);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: inset 0 2px 5px rgba(0,0,0,0.06);
+}
+
+.rh-chart-fill {
+  height: 100%;
+  border-radius: 14px;
+  transition: width 1.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  min-width: 2%;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+}
+
+.rh-chart-stats {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.95rem;
+  color: #4a6177;
+  font-weight: 600;
+}
+
+.rh-candidato-porcentaje {
+  font-weight: 700;
+  color: var(--reg-ink);
 }
 
 @media (max-width: 900px) {

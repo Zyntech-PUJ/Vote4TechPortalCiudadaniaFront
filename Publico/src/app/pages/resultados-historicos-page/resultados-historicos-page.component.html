@@ -1,9 +1,23 @@
-<section class="rh-page" aria-label="Consulta de resultados historicos">
-  <header class="rh-hero">
+<div class="rh-page">
+  <header class="rh-topbar">
+    <a routerLink="/" class="rh-logo-link">
+      <img src="assets/logoRegistraduria.jpg" alt="Registraduria Nacional del Estado Civil" class="rh-logo" />
+    </a>
+
+    <nav class="rh-breadcrumb" aria-label="Ruta de navegacion">
+      <a routerLink="/">Inicio</a>
+      <span>/</span>
+      <a routerLink="/electoral">Electoral</a>
+      <span>/</span>
+      <span>Resultados Históricos</span>
+    </nav>
+  </header>
+
+  <section class="rh-hero" aria-label="Consulta de resultados historicos">
     <div class="rh-hero__overlay"></div>
 
     <div class="rh-hero__content">
-      <a [routerLink]="['/']" class="rh-back-link">Volver al menu principal</a>
+      <a [routerLink]="['/electoral']" class="rh-back-link">Volver a servicios electorales</a>
 
       <div class="rh-brand">
         <div class="rh-brand__frame">
@@ -13,48 +27,90 @@
         <div class="rh-brand__copy">
           <p>Consulta ciudadana</p>
           <h1>Resultados historicos</h1>
-          <span>Seleccione año y departamento para consultar los censos historicos electorales.</span>
+          <span>Seleccione los parámetros deseados para consultar los resultados historicos electorales.</span>
         </div>
       </div>
     </div>
-  </header>
+  </section>
 
   <main class="rh-main">
     <section class="rh-panel">
-      <p class="rh-panel__eyebrow">Censos electorales</p>
+      <p class="rh-panel__eyebrow">Resultados electorales</p>
       <h2>Consulta de resultados historicos</h2>
 
       <form class="rh-form" (ngSubmit)="consultar()" #f="ngForm" novalidate>
         <div class="rh-filters">
+          <!-- Filtro Tipo de Elección -->
+          <label class="rh-select-wrap" for="tipoEleccion">
+            <span class="rh-label">Tipo de elección</span>
+            <select id="tipoEleccion" name="tipoEleccion" [(ngModel)]="tipoEleccionId" (change)="onTipoEleccionChange()" required>
+              <option [ngValue]="''" disabled>Seleccione...</option>
+              @for (item of tiposEleccion; track item.id) {
+                <option [ngValue]="item.id">{{ item.nombre }}</option>
+              }
+            </select>
+          </label>
+
+          <!-- Filtro Año -->
           <label class="rh-select-wrap" for="anio">
             <span class="rh-label">Año</span>
-            <select id="anio" name="anio" [(ngModel)]="anio" required>
+            <select id="anio" name="anio" [(ngModel)]="anio" (change)="onFiltroChange()" required [disabled]="!tipoEleccionSeleccionada">
               <option [ngValue]="''" disabled>Año</option>
-              @for (item of anios(); track item) {
+              @for (item of aniosDisponibles; track item) {
                 <option [ngValue]="item">{{ item }}</option>
               }
             </select>
           </label>
 
-          <label class="rh-select-wrap" for="departamento">
-            <span class="rh-label">Departamento</span>
-            <select id="departamento" name="departamento" [(ngModel)]="departamento" required>
-              <option [ngValue]="''" disabled>Departamento</option>
-              @for (item of config.departamentos; track item) {
-                <option [ngValue]="item">{{ item }}</option>
-              }
-            </select>
-          </label>
+          <!-- Filtro Geográfico Dinámico -->
+          @if (tipoEleccionSeleccionada && tipoEleccionSeleccionada.filtroGeografico !== 'Nacional') {
+            <label class="rh-select-wrap" for="ubicacion">
+              <span class="rh-label">{{ tipoEleccionSeleccionada.filtroGeografico }}</span>
+              <select id="ubicacion" name="ubicacion" [(ngModel)]="ubicacion" (change)="onFiltroChange()" required>
+                <option [ngValue]="''" disabled>Seleccione {{ tipoEleccionSeleccionada.filtroGeografico.toLowerCase() }}</option>
+                @for (item of ubicacionesDisponibles; track item) {
+                  <option [ngValue]="item">{{ item }}</option>
+                }
+              </select>
+            </label>
+          }
         </div>
 
-        <button type="submit" class="rh-submit">Consultar censos historicos</button>
+        <button type="submit" class="rh-submit" [disabled]="!tipoEleccionSeleccionada || !anio || (tipoEleccionSeleccionada.filtroGeografico !== 'Nacional' && !ubicacion)">Consultar resultados</button>
 
-        @if (f.submitted && f.invalid) {
-          <p class="rh-message rh-message--error">Seleccione año y departamento.</p>
-        } @else if (mensaje) {
-          <p class="rh-message">{{ mensaje }}</p>
+        @if (mensaje) {
+          <p class="rh-message" [class.rh-message--error]="mensaje.includes('requeridos') || mensaje.includes('Seleccione')">{{ mensaje }}</p>
         }
       </form>
+
+      <!-- Gráfico Simulado -->
+      @if (resultados) {
+        <div class="rh-chart-container">
+          <h3 class="rh-chart-title">Resultados Simulados - {{ tipoEleccionSeleccionada?.nombre }} {{ anio }}</h3>
+          @if (tipoEleccionSeleccionada?.filtroGeografico !== 'Nacional') {
+            <p class="rh-chart-subtitle">{{ ubicacion }}</p>
+          }
+
+          <div class="rh-chart">
+            @for (candidato of resultados; track candidato.nombre) {
+              <div class="rh-chart-bar-group">
+                <div class="rh-chart-info">
+                  <span class="rh-candidato-nombre">{{ candidato.nombre }}</span>
+                  <span class="rh-candidato-partido" [style.color]="candidato.color">{{ candidato.partido }}</span>
+                </div>
+                <div class="rh-chart-track">
+                  <div class="rh-chart-fill" [style.width.%]="candidato.porcentaje" [style.backgroundColor]="candidato.color"></div>
+                </div>
+                <div class="rh-chart-stats">
+                  <span class="rh-candidato-porcentaje">{{ candidato.porcentaje }}%</span>
+                  <span class="rh-candidato-votos">{{ candidato.votos | number }} votos</span>
+                </div>
+              </div>
+            }
+          </div>
+        </div>
+      }
+
     </section>
   </main>
-</section>
+</div>

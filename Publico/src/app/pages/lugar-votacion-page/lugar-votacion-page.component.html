@@ -43,24 +43,6 @@
           }
         </div>
 
-        <div class="lv-field">
-          <label for="eleccion" class="lv-label">Seleccione la elección:</label>
-          <select
-            id="eleccion"
-            class="lv-select"
-            [(ngModel)]="eleccion"
-            name="eleccion"
-            required
-          >
-            <option value="" disabled hidden>lugar de votación actual...</option>
-            @for (e of elecciones(); track e) {
-              <option [value]="e">{{ e }}</option>
-            }
-          </select>
-          @if (f.submitted && f.controls['eleccion']?.invalid) {
-            <p class="lv-error">⚠ Campo requerido</p>
-          }
-        </div>
 
         <button type="submit" class="lv-btn-consultar">CONSULTAR</button>
 
@@ -72,13 +54,22 @@
       @if (resultado === null) {
         <h2 class="lv-info-title">INFORMACIÓN DEL LUGAR DE VOTACIÓN</h2>
         <p class="lv-info-text">
-          Por favor digite su número de cédula, seleccione el tipo de elección y dé clic en consultar.
+          Por favor digite su número de cédula y dé clic en consultar.
         </p>
       } @else {
         <h2 class="lv-info-title">RESULTADO</h2>
-        <p class="lv-info-text lv-info-text--warn">
-          No se encontró información para el número de identificación ingresado. Verifique los datos e intente de nuevo.
-        </p>
+        @if (resultado.found) {
+          <div class="lv-info-details" style="font-size: 1.1rem; line-height: 1.8;">
+             <p><strong>Puesto:</strong> {{ resultado.puesto }}</p>
+             <p><strong>Dirección:</strong> {{ resultado.direccion }}</p>
+             <p><strong>Municipio:</strong> {{ resultado.municipio }}</p>
+             <p><strong>Mesa:</strong> {{ resultado.mesa }}</p>
+          </div>
+        } @else {
+          <p class="lv-info-text lv-info-text--warn">
+            No se encontró información para el número de identificación ingresado. Verifique los datos e intente de nuevo.
+          </p>
+        }
       }
     </aside>
 

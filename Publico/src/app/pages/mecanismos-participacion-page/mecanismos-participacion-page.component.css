@@ -11,6 +11,41 @@
   color: #0e2d4c;
 }
 
+.mp-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background: var(--reg-white);
+  border-bottom: 1px solid #dde6f0;
+}
+
+.mp-logo-link { display: inline-block; }
+
+.mp-logo {
+  height: 64px;
+  width: auto;
+  object-fit: contain;
+}
+
+.mp-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.9rem;
+  color: #0b2741;
+}
+
+.mp-breadcrumb a {
+  color: var(--reg-blue-700);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.mp-breadcrumb a:hover { text-decoration: underline; }
+
+.mp-breadcrumb span:not(:last-child) { color: #8a9bb0; }
+
 .mp-head {
   max-width: 1250px;
   margin: 0 auto;

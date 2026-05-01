@@ -1,11 +1,25 @@
-<section class="censo-page" aria-label="Censo electoral">
-  <header class="censo-hero">
+<div class="censo-page">
+  <header class="censo-topbar">
+    <a routerLink="/" class="censo-logo-link">
+      <img src="assets/logoRegistraduria.jpg" alt="Registraduria Nacional del Estado Civil" class="censo-logo" />
+    </a>
+
+    <nav class="censo-breadcrumb" aria-label="Ruta de navegacion">
+      <a routerLink="/">Inicio</a>
+      <span>/</span>
+      <a routerLink="/electoral">Electoral</a>
+      <span>/</span>
+      <span>Censo Electoral</span>
+    </nav>
+  </header>
+
+  <section class="censo-hero" aria-label="Censo electoral">
     <div class="censo-hero__content">
       <a routerLink="/" class="censo-back-link">Volver al menu principal</a>
       <h1>Censo electoral</h1>
       <p>Consulta de informacion general y censos historicos.</p>
     </div>
-  </header>
+  </section>
 
   <main class="censo-main">
     <div class="censo-grid">
@@ -28,4 +42,4 @@
       }
     </div>
   </main>
-</section>
+</div>

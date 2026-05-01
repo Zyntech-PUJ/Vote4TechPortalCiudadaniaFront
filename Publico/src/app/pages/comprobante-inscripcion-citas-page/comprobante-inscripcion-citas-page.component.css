@@ -12,13 +12,40 @@
   background: linear-gradient(180deg, #e6f1fa 0%, #f4f9fd 46%, #ffffff 100%);
 }
 
-.cic-hero {
-  position: relative;
-  overflow: hidden;
-  background:
-    radial-gradient(circle at 18% 20%, rgba(61, 142, 211, 0.26), transparent 24%),
-    linear-gradient(180deg, rgba(7, 39, 75, 0.96), rgba(10, 60, 114, 0.98));
+.cic-topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+  background: var(--reg-white);
+  border-bottom: 1px solid #dde6f0;
 }
+
+.cic-logo-link { display: inline-block; }
+
+.cic-logo {
+  height: 64px;
+  width: auto;
+  object-fit: contain;
+}
+
+.cic-breadcrumb {
+  display: flex;
+  align-items: center;
+  gap: 0.45rem;
+  font-size: 0.9rem;
+  color: var(--reg-ink);
+}
+
+.cic-breadcrumb a {
+  color: var(--reg-blue-700);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.cic-breadcrumb a:hover { text-decoration: underline; }
+
+.cic-breadcrumb span:not(:last-child) { color: #8a9bb0; }
 
 .cic-hero__overlay {
   position: absolute;
