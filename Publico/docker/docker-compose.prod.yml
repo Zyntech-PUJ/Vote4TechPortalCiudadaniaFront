@@ -12,8 +12,8 @@ services:
     build:
       context: ..          # raiz del repo Vote4TechRegistraduriaFront
       dockerfile: Dockerfile
-    image: vote4tech-front:latest
-    container_name: vote4tech-front
+    image: vote4tech-publico:latest
+    container_name: vote4tech-publico
     network_mode: host     # usa la red del VM directamente; permite que Nginx
                            # alcance IPs externas igual que el host (ej: 10.43.100.131)
     restart: unless-stopped
