@@ -11,12 +11,12 @@ import { NoticiasComponent } from '../noticias/noticias.component';
 })
 export class RegistraduriaLandingComponent {
   protected readonly navItems = [
-    'Registrador Nacional',
-    'Atencion y servicios a la ciudadania',
-    'Participa',
-    'Capacitacion Electoral - SICE',
-    'CEDAE',
-    'Observatorio Electoral'
+    { label: 'Registrador Nacional',                route: '/registro-civil-e-identificacion' },
+    { label: 'Atencion y servicios a la ciudadania', route: '/servicios-ciudadania' },
+    { label: 'Participa',                            route: '/electoral/mecanismos-participacion' },
+    { label: 'Capacitacion Electoral - SICE',        route: '/electoral/capacitacion-electoral' },
+    { label: 'CEDAE',                                route: '/electoral/inscripcion-candidatos' },
+    { label: 'Observatorio Electoral',               route: '/electoral/resultados-historicos' }
   ];
 
   protected readonly serviceCards = [
