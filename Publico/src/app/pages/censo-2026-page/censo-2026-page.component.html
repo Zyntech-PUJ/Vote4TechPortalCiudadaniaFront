@@ -1,0 +1,117 @@
+<div class="c26-page">
+  <!-- Topbar -->
+  <header class="c26-topbar">
+    <a routerLink="/" class="c26-logo-link">
+      <img src="assets/logoRegistraduria.jpg" alt="Registraduria Nacional del Estado Civil" class="c26-logo" />
+    </a>
+    <nav class="c26-breadcrumb" aria-label="Ruta de navegacion">
+      <a routerLink="/">Inicio</a>
+      <span>/</span>
+      <a routerLink="/electoral">Electoral</a>
+      <span>/</span>
+      <a routerLink="/electoral/censo-electoral">Censo Electoral</a>
+      <span>/</span>
+      <span>Censo 2026</span>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="c26-hero">
+    <div class="c26-hero__content">
+      <a routerLink="/electoral/censo-electoral" class="c26-back-link">Volver a Censo Electoral</a>
+      <h1>Censo Electoral al {{ fechaCorte }}</h1>
+      <p>Información oficial del potencial electoral habilitado para participar en los comicios del 7 de abril de 2026.</p>
+    </div>
+  </section>
+
+  <main class="c26-main">
+
+    <!-- KPI Cards -->
+    <section class="c26-kpis" aria-label="Resumen censo electoral">
+      <div class="c26-kpi-card c26-kpi-card--accent">
+        <span class="c26-kpi-label">Total votantes habilitados</span>
+        <span class="c26-kpi-value">{{ totalVotantes | number }}</span>
+      </div>
+      <div class="c26-kpi-card">
+        <span class="c26-kpi-label">Hombres</span>
+        <span class="c26-kpi-value">{{ totalHombres | number }}</span>
+        <span class="c26-kpi-sub">{{ porcentaje(totalHombres) }}%</span>
+      </div>
+      <div class="c26-kpi-card">
+        <span class="c26-kpi-label">Mujeres</span>
+        <span class="c26-kpi-value">{{ totalMujeres | number }}</span>
+        <span class="c26-kpi-sub">{{ porcentaje(totalMujeres) }}%</span>
+      </div>
+      <div class="c26-kpi-card">
+        <span class="c26-kpi-label">Municipios con puestos</span>
+        <span class="c26-kpi-value">{{ totalMunicipios | number }}</span>
+      </div>
+      <div class="c26-kpi-card">
+        <span class="c26-kpi-label">Puestos de votación</span>
+        <span class="c26-kpi-value">{{ totalPuestos | number }}</span>
+      </div>
+    </section>
+
+    <!-- Distribution by department -->
+    <section class="c26-section" aria-label="Distribucion por departamento">
+      <h2 class="c26-section-title">Distribución por departamento</h2>
+      <div class="c26-table-wrapper">
+        <table class="c26-table" aria-label="Censo electoral por departamento">
+          <thead>
+            <tr>
+              <th scope="col">Departamento</th>
+              <th scope="col" class="c26-th-num">Hombres</th>
+              <th scope="col" class="c26-th-num">Mujeres</th>
+              <th scope="col" class="c26-th-num">Total</th>
+              <th scope="col" class="c26-th-num">% del Censo</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (dep of departamentos; track dep.departamento) {
+              <tr>
+                <td>{{ dep.departamento }}</td>
+                <td class="c26-td-num">{{ dep.hombres | number }}</td>
+                <td class="c26-td-num">{{ dep.mujeres | number }}</td>
+                <td class="c26-td-num c26-td-bold">{{ dep.total | number }}</td>
+                <td class="c26-td-num">{{ porcentaje(dep.total) }}%</td>
+              </tr>
+            }
+          </tbody>
+          <tfoot>
+            <tr class="c26-total-row">
+              <td><strong>Total Nacional</strong></td>
+              <td class="c26-td-num"><strong>{{ totalHombres | number }}</strong></td>
+              <td class="c26-td-num"><strong>{{ totalMujeres | number }}</strong></td>
+              <td class="c26-td-num c26-td-bold"><strong>{{ totalVotantes | number }}</strong></td>
+              <td class="c26-td-num"><strong>100%</strong></td>
+            </tr>
+          </tfoot>
+        </table>
+      </div>
+    </section>
+
+    <!-- Distribution by age group -->
+    <section class="c26-section" aria-label="Distribucion por grupo etario">
+      <h2 class="c26-section-title">Distribución por grupo etario</h2>
+      <div class="c26-age-grid">
+        @for (g of gruposEtarios; track g.rango) {
+          <div class="c26-age-card">
+            <span class="c26-age-rango">{{ g.rango }}</span>
+            <div class="c26-age-bar-wrapper">
+              <div class="c26-age-bar" [style.width.%]="g.porcentaje" aria-hidden="true"></div>
+            </div>
+            <div class="c26-age-data">
+              <span class="c26-age-pct">{{ g.porcentaje }}%</span>
+              <span class="c26-age-cnt">{{ g.cantidad | number }}</span>
+            </div>
+          </div>
+        }
+      </div>
+    </section>
+
+    <!-- Note -->
+    <p class="c26-note">
+      * Datos con corte oficial al {{ fechaCorte }}. Fuente: Registraduría Nacional del Estado Civil de Colombia.
+    </p>
+  </main>
+</div>

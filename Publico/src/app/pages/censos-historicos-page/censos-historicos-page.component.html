@@ -1,0 +1,114 @@
+<div class="hist-page">
+  <!-- Topbar -->
+  <header class="hist-topbar">
+    <a routerLink="/" class="hist-logo-link">
+      <img src="assets/logoRegistraduria.jpg" alt="Registraduria Nacional del Estado Civil" class="hist-logo" />
+    </a>
+    <nav class="hist-breadcrumb" aria-label="Ruta de navegacion">
+      <a routerLink="/">Inicio</a>
+      <span>/</span>
+      <a routerLink="/electoral">Electoral</a>
+      <span>/</span>
+      <a routerLink="/electoral/censo-electoral">Censo Electoral</a>
+      <span>/</span>
+      <span>Censos Históricos</span>
+    </nav>
+  </header>
+
+  <!-- Hero -->
+  <section class="hist-hero">
+    <div class="hist-hero__content">
+      <a routerLink="/electoral/censo-electoral" class="hist-back-link">Volver a Censo Electoral</a>
+      <h1>Censos Electorales Históricos</h1>
+      <p>Evolución del potencial electoral habilitado en los procesos electorales desde el año 2018.</p>
+    </div>
+  </section>
+
+  <main class="hist-main">
+
+    <!-- Summary cards -->
+    <section class="hist-kpis" aria-label="Resumen historico">
+      <div class="hist-kpi-card hist-kpi-card--accent">
+        <span class="hist-kpi-label">Procesos electorales registrados</span>
+        <span class="hist-kpi-value">{{ censos.length }}</span>
+        <span class="hist-kpi-sub">Desde 2018</span>
+      </div>
+      <div class="hist-kpi-card">
+        <span class="hist-kpi-label">Crecimiento acumulado</span>
+        <span class="hist-kpi-value">+10.6%</span>
+        <span class="hist-kpi-sub">2018 → 2026</span>
+      </div>
+      <div class="hist-kpi-card">
+        <span class="hist-kpi-label">Potencial electoral 2018</span>
+        <span class="hist-kpi-value">36,393,698</span>
+      </div>
+      <div class="hist-kpi-card hist-kpi-card--highlight">
+        <span class="hist-kpi-label">Potencial electoral 2026</span>
+        <span class="hist-kpi-value">40,234,812</span>
+      </div>
+    </section>
+
+    <!-- Historical table -->
+    <section class="hist-section" aria-label="Tabla de censos historicos">
+      <h2 class="hist-section-title">Detalle por proceso electoral</h2>
+      <div class="hist-table-wrapper">
+        <table class="hist-table" aria-label="Censos electorales historicos">
+          <thead>
+            <tr>
+              <th scope="col">Año</th>
+              <th scope="col">Tipo de elección</th>
+              <th scope="col" class="hist-th-num">Total votantes</th>
+              <th scope="col" class="hist-th-num">Variación</th>
+              <th scope="col" class="hist-th-num">Puestos habilitados</th>
+              <th scope="col" class="hist-th-num">Departamentos</th>
+            </tr>
+          </thead>
+          <tbody>
+            @for (censo of censos; track censo.anio) {
+              <tr [class.hist-row--current]="censo.anio === 2026">
+                <td class="hist-td-year">
+                  {{ censo.anio }}
+                  @if (censo.anio === 2026) {
+                    <span class="hist-badge">Actual</span>
+                  }
+                </td>
+                <td>{{ censo.tipoEleccion }}</td>
+                <td class="hist-td-num hist-td-bold">{{ censo.totalVotantes | number }}</td>
+                <td class="hist-td-num">
+                  <span [class]="variacionClass(censo.variacion)">
+                    {{ variacionLabel(censo.variacion) }}
+                  </span>
+                </td>
+                <td class="hist-td-num">{{ censo.puestosHabilitados | number }}</td>
+                <td class="hist-td-num">{{ censo.departamentosActivos }}</td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- Timeline -->
+    <section class="hist-section" aria-label="Linea de tiempo del censo">
+      <h2 class="hist-section-title">Evolución del potencial electoral</h2>
+      <div class="hist-timeline">
+        @for (censo of censos | slice:0:5; track censo.anio; let last = $last) {
+          <div class="hist-tl-item" [class.hist-tl-item--current]="censo.anio === 2026">
+            <div class="hist-tl-dot"></div>
+            @if (!last) { <div class="hist-tl-line"></div> }
+            <div class="hist-tl-content">
+              <span class="hist-tl-year">{{ censo.anio }}</span>
+              <span class="hist-tl-total">{{ censo.totalVotantes | number }}</span>
+              <span class="hist-tl-type">{{ censo.tipoEleccion }}</span>
+            </div>
+          </div>
+        }
+      </div>
+    </section>
+
+    <p class="hist-note">
+      * Datos oficiales publicados por la Registraduría Nacional del Estado Civil de Colombia.
+      Los datos del año 2026 corresponden al censo con corte al 7 de abril de 2026.
+    </p>
+  </main>
+</div>

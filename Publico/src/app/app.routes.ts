@@ -8,6 +8,8 @@ import { ConsultaJuradoPageComponent } from './pages/consulta-jurado-page/consul
 import { ConsultaSancionPageComponent } from './pages/consulta-sancion-page/consulta-sancion-page.component';
 import { ComprobanteInscripcionCitasPageComponent } from './pages/comprobante-inscripcion-citas-page/comprobante-inscripcion-citas-page.component';
 import { CensoElectoralPageComponent } from './pages/censo-electoral-page/censo-electoral-page.component';
+import { Censo2026PageComponent } from './pages/censo-2026-page/censo-2026-page.component';
+import { CensosHistoricosPageComponent } from './pages/censos-historicos-page/censos-historicos-page.component';
 import { CapacitacionElectoralPageComponent } from './pages/capacitacion-electoral-page/capacitacion-electoral-page.component';
 import { InscripcionCandidatosPageComponent } from './pages/inscripcion-candidatos-page/inscripcion-candidatos-page.component';
 import { MecanismosParticipacionPageComponent } from './pages/mecanismos-participacion-page/mecanismos-participacion-page.component';
@@ -70,6 +72,14 @@ export const routes: Routes = [
 	{
 		path: 'electoral/censo-electoral',
 		component: CensoElectoralPageComponent
+	},
+	{
+		path: 'electoral/censo-electoral/censo-2026',
+		component: Censo2026PageComponent
+	},
+	{
+		path: 'electoral/censo-electoral/historicos',
+		component: CensosHistoricosPageComponent
 	},
 	{
 		path: 'electoral/capacitacion-electoral',

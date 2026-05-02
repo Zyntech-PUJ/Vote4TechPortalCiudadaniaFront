@@ -195,14 +195,35 @@
   cursor: pointer;
 }
 
+.cic-form button:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
 .cic-form button:hover {
   background: var(--reg-blue-900);
+}
+
+.cic-form button:disabled:hover {
+  background: var(--reg-blue-950);
 }
 
 .cic-error {
   grid-column: span 2;
   margin: 0.2rem 0 0;
   color: #d13438;
+  font-size: 0.82rem;
+  font-weight: 600;
+}
+
+.cic-success {
+  grid-column: span 2;
+  margin: 0.2rem 0 0;
+  color: #0f6b42;
+  background: #edf8f1;
+  border: 1px solid #bde5ca;
+  border-radius: 0.7rem;
+  padding: 0.55rem 0.7rem;
   font-size: 0.82rem;
   font-weight: 600;
 }

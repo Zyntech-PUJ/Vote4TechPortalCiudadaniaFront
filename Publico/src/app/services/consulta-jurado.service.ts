@@ -27,7 +27,7 @@ export class ConsultaJuradoService {
       tituloEvento: 'Consulta si fuiste designado como jurado de votacion',
       subtitulo: '',
       ayuda: 'Por favor digite su numero de cedula y de clic en consultar.',
-      recordatorio: 'Recuerde: A mas tardar 7:30 am los jurados de votacion deberan estar ubicados en la mesa en la cual prestaran su servicio.',
+      recordatorio: ' A mas tardar 7:30 am los jurados de votacion deberan estar ubicados en la mesa en la cual prestaran su servicio.',
       nota: 'Nota: El jurado de votacion que se presente a la mesa de votacion con posterioridad a la hora senalada sera considerado como no asistente y, en consecuencia, sera reemplazado y se atendra a las sanciones legales correspondientes.'
     };
   }
