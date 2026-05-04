@@ -1,0 +1,30 @@
+# docker-compose para levantar el CiudadaniaFront en la VM 10.43.97.237
+# en el puerto 4202, con Cloudflare Quick Tunnel (URL publica automatica).
+#
+# Uso:
+#   docker compose -f docker/docker-compose.prod.yml up -d --build
+#
+# Para ver la URL publica generada:
+#   docker logs vote4tech-ciudadania-cloudflared
+
+name: vote4tech-ciudadania
+
+services:
+  ciudadania-front:
+    build:
+      context: ..          # raíz del repo Vote4TechPortalCiudadaniaFront
+      dockerfile: Dockerfile
+    image: vote4tech-ciudadania-front:latest
+    container_name: vote4tech-ciudadania-front
+    ports:
+      - "4202:80"
+    restart: unless-stopped
+
+  cloudflared:
+    image: cloudflare/cloudflared:latest
+    container_name: vote4tech-ciudadania-cloudflared
+    command: tunnel --no-autoupdate --url http://localhost:4202
+    network_mode: host
+    depends_on:
+      - ciudadania-front
+    restart: unless-stopped
