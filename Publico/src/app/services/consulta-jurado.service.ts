@@ -14,6 +14,10 @@ export interface ConsultaJuradoConfig {
 export interface ConsultaJuradoResult {
   found: boolean;
   mensaje: string;
+  puesto?: string;
+  direccion?: string;
+  municipio?: string;
+  mesa?: string;
 }
 
 @Injectable({ providedIn: 'root' })
@@ -38,13 +42,17 @@ export class ConsultaJuradoService {
     }
 
     return this.http
-      .get<{ found?: boolean; mensaje?: string }>(this.endpoint, {
+      .get<{ found?: boolean; mensaje?: string; puesto?: string; direccion?: string; municipio?: string; mesa?: string }>(this.endpoint, {
         params: { cedula }
       })
       .pipe(
         map((res) => ({
           found: !!res.found,
-          mensaje: res.mensaje ?? 'No se encontro designacion de jurado para el documento ingresado.'
+          mensaje: res.mensaje ?? 'No se encontro designacion de jurado para el documento ingresado.',
+          puesto: res.puesto,
+          direccion: res.direccion,
+          municipio: res.municipio,
+          mesa: res.mesa
         })),
         catchError(() =>
           of({

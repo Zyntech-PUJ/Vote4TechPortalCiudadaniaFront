@@ -52,7 +52,19 @@
             <p class="cj-ayuda">{{ config.ayuda }}</p>
           } @else {
             <h3 class="cj-info-title">Resultado de consulta</h3>
-            <p class="cj-ayuda">{{ resultado.mensaje }}</p>
+            @if (resultado.found && resultado.puesto) {
+              <div class="cj-ayuda">
+                <p style="margin-bottom: 0.8rem">{{ resultado.mensaje }}</p>
+                <div style="font-size: 1.1rem; line-height: 1.8;">
+                   <p><strong>Tipo de elección:</strong> {{ resultado.puesto }}</p>
+                   <p><strong>Dirección:</strong> {{ resultado.direccion }}</p>
+                   <p><strong>Municipio:</strong> {{ resultado.municipio }}</p>
+                   <p><strong>Mesa:</strong> {{ resultado.mesa }}</p>
+                </div>
+              </div>
+            } @else {
+              <p class="cj-ayuda">{{ resultado.mensaje }}</p>
+            }
           }
         </aside>
       </div>

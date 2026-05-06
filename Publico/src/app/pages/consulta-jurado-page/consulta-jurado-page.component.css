@@ -172,6 +172,7 @@
 .cj-ayuda {
   font-size: 1.1rem;
   line-height: 1.4;
+  white-space: pre-line;
 }
 
 @media (max-width: 900px) {
