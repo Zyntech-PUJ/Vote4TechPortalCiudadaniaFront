@@ -13,7 +13,7 @@ export interface ConsultaLugarVotacionResult {
 
 @Injectable({ providedIn: 'root' })
 export class LugarVotacionService {
-  private readonly endpoint = 'http://localhost:8082/api/electoral/lugar-votacion';
+  private readonly endpoint = '/api/electoral/lugar-votacion';
 
   constructor(private readonly http: HttpClient) {}
 

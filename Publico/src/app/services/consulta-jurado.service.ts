@@ -22,7 +22,7 @@ export interface ConsultaJuradoResult {
 
 @Injectable({ providedIn: 'root' })
 export class ConsultaJuradoService {
-  private readonly endpoint = 'http://localhost:8082/api/electoral/consulta-jurado';
+  private readonly endpoint = '/api/electoral/consulta-jurado';
 
   constructor(private readonly http: HttpClient) {}
 

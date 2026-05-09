@@ -18,7 +18,7 @@ export interface ConsultaSancionResult {
 
 @Injectable({ providedIn: 'root' })
 export class ConsultaSancionService {
-  private readonly endpoint = 'http://localhost:8082/api/electoral/consulta-sancion';
+  private readonly endpoint = '/api/electoral/consulta-sancion';
 
   constructor(private readonly http: HttpClient) {}
 
